@@ -1,12 +1,12 @@
 import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import Icons from "../public/icons/icons"
 
 export default function Layout ({ children, activePage }:any){
 
-  console.log("Rendered")
+  // console.log("Rendered")
 
   const [pageLinksActive, setPageLinksActive] = useState(true)
 
@@ -53,8 +53,8 @@ export default function Layout ({ children, activePage }:any){
         <div className="text-sm py-2">Kushagra_Agarwal - portfolio</div>
         {/* Temporary */}
         <div className="text-transparent flex font-normal">
-          <div className="text-white py-1 hover:bg-[#555555] w-12 flex justify-center" onClick={toggleFullScreen}>o</div>
-          <div className="text-white py-1 hover:bg-red-500 w-12 flex justify-center" onClick={toggleFullScreen}>x</div>
+          <div className="text-white cursor-pointer py-1 hover:bg-[#555555] w-12 flex justify-center" onClick={toggleFullScreen}>o</div>
+          <div className="text-white cursor-pointer py-1 hover:bg-red-500 w-12 flex justify-center" onClick={toggleFullScreen}>x</div>
         </div>
       </div>
 

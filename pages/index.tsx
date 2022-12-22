@@ -4,7 +4,7 @@ import Image from 'next/image'
 export default function Home() {
 
   return (
-    <Layout activePage = "Home">
+    <Layout activePage = "home">
       <div className='relative overflow-hidden isolate h-full w-full flex'>
         <div className="flex-col m-10 ">
           <div className='text-9xl p-3 bg-gradient-to-tr bg-clip-text from-black to-[#0e0e0e] text-transparent font-bold font-mono'>Kushagra<br/>Agarwal</div>
