@@ -1,31 +1,64 @@
-import Layout from '../components/Layout'
-import Image from 'next/image'
+import Navbar from '../components/Utils/Navbar';
+import Hero from '../components/Home/hero'
+import About from '../components/Home/about'
+import Skills from '../components/Home/skills'
+import Image from 'next/image';
+import { useEffect } from 'react';
 
 export default function Home() {
 
-  return (
-    <Layout activePage = "home">
-      <div className='relative overflow-hidden isolate h-full w-full flex'>
-        <div className="flex-col m-10 ">
-          <div className='text-9xl p-3 bg-gradient-to-tr bg-clip-text from-black to-[#0e0e0e] text-transparent font-bold font-mono'>Kushagra<br/>Agarwal</div>
-          <div className='text-black p-3 text-4xl font-bold uppercase'>Budding Software Developer</div>
-          <div className='bg-gradient-to-r from-black rounded-l-md py-3 px-5 text-2xl font-semibold text-white'>Check out my Projects</div>
-        </div>
-        <Image className='-z-10 absolute opacity-80' src="/img/home-bg.jpg" width={1440} height={800} draggable="false" alt="Bg"/>
-      </div>
+  // const pageNavLinks = [
+  //   ["home-hero","Page Title"]
+  // ]
 
-    </Layout>
+  // const sections = 4;
+
+  useEffect(()=>{
+    const observer = new IntersectionObserver((entries)=>{
+      const [entry] = entries
+
+      if (entry.isIntersecting){
+        document.getElementById('s2_title')?.classList.remove('opacity-0') 
+      }
+    },{
+      threshold: 0.4
+    })
+    const element:any = document.getElementById('story')
+    observer.observe(element)
+
+    return ()=>{
+      observer.unobserve(element)
+    }
+  },[])
+
+  return(
+    <div id="HomePage" className={`absolute h-[100vh] overflow-y-scroll overflow-x-hidden select-none w-full`}>
+      <Navbar className="bg-transparent"/>
+      <div className={`w-[100vw] h-full overflow-x-hidden overflow-y-scroll scroll-smooth bg-navyBlue isolate`}>
+
+        <Hero/>
+        <About/>
+        <Skills/>
+        
+        <div id = "endnote" className='h-[100vh] bg-black'>
+
+        </div>
+      </div>
+    </div>
   )
 
   // return (
-  //     <div className="fixed h-screen w-full bg-black">
-  //       <Head><title>Kushagra Agarwal</title></Head>
-  //       <div className='h-full font-bold'>
-  //         <div className='select-none flex-col h-full align-middle items-center m-32'>
-  //           <div className='px-5 py-5 text-9xl bg-gradient-to-br from-blue-600 to-blue-300 bg-clip-text text-transparent'>Ku<span className='bg-[#222222] h-fit rounded-md text-white'>sh</span>agra<br/>Agarwal</div>
-  //           <div className='p-5 text-4xl uppercase text-white'>Software Development Enthusiast</div>
-  //         </div>
+  //   <Layout activePage = "home" pageNavLinks={pageNavLinks}>
+  //     <div id="home-hero" className='relative flex w-full h-full overflow-hidden isolate'>
+  //       <div className="flex-col m-10 ">
+  //         <div className='text-9xl p-3 bg-gradient-to-tr bg-clip-text from-black to-[#0e0e0e] text-transparent font-bold font-mono'>Kushagra<br/>Agarwal</div>
+  //         <div className='p-3 text-4xl font-bold text-white uppercase'>Budding Software Developer</div>
+  //         <div className='px-5 py-3 text-2xl font-semibold text-white bg-gradient-to-r from-black rounded-l-md'>Check out my Projects</div>
   //       </div>
+  //       <Image className='absolute w-full h-full -z-10 opacity-80' src="/img/home-bg.jpg" width={1440} height={800} draggable="false" alt="Bg"/>
   //     </div>
+      
+  //   </Layout>
   // )
+
 }
