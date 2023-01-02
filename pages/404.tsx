@@ -1,12 +1,15 @@
 import Layout from "../components/Utils/Layout";
+import Navbar from "../components/Utils/Navbar";
+import { indie_flower, oswald } from '../components/Utils/Fonts';
 
 
 export default function NotFound(){
   return(
-    <Layout activePage = "not found">
-      <div className="h-full w-full items-center justify-center flex">
-        <div className="text-6xl">404 | Not Found</div>
+    <div className="bg-navyBlue h-screen w-full justify-center">
+      <Navbar/>
+      <div className="text-[#eeeeee] flex items-center w-full h-full text-7xl justify-center">
+        <div className={oswald}>404 | Not Found</div>
       </div>
-    </Layout>
+    </div>
   )
 }

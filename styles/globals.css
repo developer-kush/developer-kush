@@ -7,6 +7,10 @@
   .heroAnim{
     animation: stomp 1.5s cubic-bezier(0.455, 0.03, 0.515, 0.955)
   }
+
+  /* .uppercard{
+    clip-path: polygon(0% 0%,100% 0%, 100% 55%,99% 56%, 98% 56%, 2% 44%, 1% 43%, 0% 42%);
+  } */
   @keyframes blink {
     50%{ @apply opacity-0 }
   }
