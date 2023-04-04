@@ -1,34 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bayon&family=Quicksand:wght@300;400;500;600;700&family=Tillana&display=swap" rel="stylesheet">
 
-## Getting Started
+<a href = "https://kushagra-agarwal.vercel.app"><img src = "./README/header.svg" width="100%" height="50%" alt = 'Kushagra Agarwal'></a>
 
-First, run the development server:
+# 🧑‍💻 About Me 
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+I am a Competitive programmer and Software Developer from India 💻
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- 🌱 I’m in my 2nd year of CSE undergrad.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- 🔭 Exploring new technologies, building awesome tools and softwares.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- 🙃 In my free time, I like to :
+    - ⚙️ Develop something for helping myself.
+    - 😈 Experiment with new technologies.
+    - ⚡ And grind LeetCode or CodeForces
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- 🏅 And I love participating in Coding Contests for my routine dose of adrenaline 
 
-## Learn More
+# My Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+<img src="README/techstack.svg" alt = "My tech Stack">
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<!-- # My Competitive Profile
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<img src="README/competitive.svg" alt = "Competitive"> -->

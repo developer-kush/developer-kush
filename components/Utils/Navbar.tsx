@@ -22,7 +22,7 @@ export default function Navbar({className}:any){
           <span className='flex w-8 h-8'>{Icons.terminal}</span>
         </div>
         <Link href="/blog" className='flex px-5 transition-all duration-200 ease-in hover:text-white'>Blog</Link>
-        <Link href="/projects" className='flex px-5 transition-all duration-200 ease-in hover:text-white'>Projects</Link>
+        <Link href="/projects" className='flex px-5 transition-all duration-200 ease-in hover:text-white'>Work</Link>
         <Link href="/contact" className='flex px-5 transition-all duration-200 ease-in hover:text-white'>Contact</Link>
       </div>
       

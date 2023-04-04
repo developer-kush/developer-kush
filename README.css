@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=quicksand:400');
+
+.markdown-body {
+    --markdown-radius: 3px;
+    --markdown-font: 'quicksand', serif;
+    --markdown-text: #333;
+    --markdown-title: hotpink;
+    --markdown-line-height: 2;
+  }

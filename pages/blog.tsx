@@ -1,8 +1,10 @@
+import Navbar from "../components/Utils/Navbar";
 
 
 export default function Blog(){
   return(
-    <div>
+    <div className='bg-navyBlue h-screen'>
+      <Navbar/>
       
     </div>
   )

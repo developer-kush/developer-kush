@@ -1,0 +1,151 @@
+<svg fill="none" viewBox="0 0 1800 700" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+	<foreignObject width="100%" height="100%">
+		<div xmlns="http://www.w3.org/1999/xhtml">
+			<style>
+				@keyframes gradientBackground {
+					0% { background: #0d1117 }
+					100% { background: #0d1117 }
+				}
+
+				@keyframes nameAnim {
+					0% { opacity: 1; }
+					45% { opacity: 1; }
+					50% { opacity: 0; }
+					95% { opacity: 0; }
+					100% { opacity: 1; }
+				}
+
+				@keyframes roleAnim {
+					0% { opacity: 0; }
+					45% { opacity: 0; }
+					50% { opacity: 1; }
+					95% { opacity: 1; }
+					100% { opacity: 0; }
+				}
+
+				.container {
+					position: relative;
+					font-family: 'Quicksand', 'sans-serif';
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+					margin: 0;
+					width: 100%;
+					height: 800px;
+					background: #0d1117;
+					<!-- animation: nameAnim 10s ease infinite; -->
+					border-radius: 10px 10px 10px 10px;
+					color: white;
+					text-align: center;
+				}
+
+				.name {
+					position: absolute;
+					margin-top: -100px;
+					color: #dddddd;
+					font-weight: 1000;
+					font-family: 'Quicksand', sans-serif;
+					font-size: 30px;
+					animation: nameAnim 8s ease infinite;
+					<!-- animation: fadeIn 2s ease-in-out; -->
+				}
+
+				.role{
+					margin-top: -210px;
+					margin-left:  -600px
+					position: absolute;
+					font-size: 10px;
+					animation: roleAnim 8s ease infinite;
+				}
+
+				.greet{
+					font-family: 'Quicksand', sans-serif;
+					font-size: 50px;
+				}
+
+				.bottomLine{
+					font-family: 'Quicksand', sans-serif;
+					font-size: 70px;
+				}
+				
+				.u_callme{
+					font-family: 'Quicksand', sans-serif;
+					font-size: 60px;
+				}
+
+				h1:hover {
+					color: #ffffff;
+				}
+			</style>
+
+
+			<div class="container">
+				<h1 class = "name">
+				<pre class='bw-color'> 
+<span class="greet">Hi 🫠, I am</span>								
+
+ ██ ▄█▀ █    ██   ██████  ██░ ██  ▄▄▄        ▄████  ██▀███   ▄▄▄      
+ ██▄█▒  ██  ▓██▒▒██    ▒ ▓██░ ██▒▒████▄     ██▒ ▀█▒▓██ ▒ ██▒▒████▄    
+▓███▄░ ▓██  ▒██░░ ▓██▄   ▒██▀▀██░▒██  ▀█▄  ▒██░▄▄▄░▓██ ░▄█ ▒▒██  ▀█▄  
+▓██ █▄ ▓▓█  ░██░  ▒   ██▒░▓█ ░██ ░██▄▄▄▄██ ░▓█  ██▓▒██▀▀█▄  ░██▄▄▄▄██ 
+▒██▒ █▄▒▒█████▓ ▒██████▒▒░▓█▒░██▓ ▓█   ▓██▒░▒▓███▀▒░██▓ ▒██▒ ▓█   ▓██▒
+▒ ▒▒ ▓▒░▒▓▒ ▒ ▒ ▒ ▒▓▒ ▒ ░ ▒ ░░▒░▒ ▒▒   ▓▒█░ ░▒   ▒ ░ ▒▓ ░▒▓░ ▒▒   ▓▒█░
+░ ░▒ ▒░░░▒░ ░ ░ ░ ░▒  ░ ░ ▒ ░▒░ ░  ▒   ▒▒ ░  ░   ░   ░▒ ░ ▒░  ▒   ▒▒ ░
+░ ░░ ░  ░░░ ░ ░ ░  ░  ░   ░  ░░ ░  ░   ▒   ░ ░   ░   ░░   ░   ░   ▒   
+░  ░      ░           ░   ░  ░  ░      ░  ░      ░    ░           ░  ░
+
+				<span class="bottomLine">A Digital Magician 🎩</span>
+                                                                    </pre>
+				</h1>
+				<h2><pre class='role'>
+
+
+
+<span class = "u_callme">
+🅄 🄲🄰🄽 🄲🄰🄻🄻 🄼🄴
+</span>
+
+
+
+
+            ,ad8888ba,                                                                      88           88                              88888888ba                                                                                                                                 
+           d8"'    `"8b                                                              ,d     ""    ,d     ""                              88      "8b                                                                                                                                
+          d8'                                                                        88           88                                     88      ,8P                                                                                                                                
+          88              ,adPPYba,   88,dPYba,,adPYba,   8b,dPPYba,    ,adPPYba,  MM88MMM  88  MM88MMM  88  8b       d8   ,adPPYba,     88aaaaaa8P'  8b,dPPYba,   ,adPPYba,    ,adPPYb,d8  8b,dPPYba,  ,adPPYYba,  88,dPYba,,adPYba,   88,dPYba,,adPYba,    ,adPPYba,  8b,dPPYba,  
+          88             a8"     "8a  88P'   "88"    "8a  88P'    "8a  a8P_____88    88     88    88     88  `8b     d8'  a8P_____88     88""""""'    88P'   "Y8  a8"     "8a  a8"    `Y88  88P'   "Y8  ""     `Y8  88P'   "88"    "8a  88P'   "88"    "8a  a8P_____88  88P'   "Y8  
+          Y8,            8b       d8  88      88      88  88       d8  8PP"""""""    88     88    88     88   `8b   d8'   8PP"""""""     88           88          8b       d8  8b       88  88          ,adPPPPP88  88      88      88  88      88      88  8PP"""""""  88          
+           Y8a.    .a8P  "8a,   ,a8"  88      88      88  88b,   ,a8"  "8b,   ,aa    88,    88    88,    88    `8b,d8'    "8b,   ,aa     88           88          "8a,   ,a8"  "8a,   ,d88  88          88,    ,88  88      88      88  88      88      88  "8b,   ,aa  88          
+            `"Y8888Y"'    `"YbbdP"'   88      88      88  88`YbbdP"'    `"Ybbd8"'    "Y888  88    "Y888  88      "8"       `"Ybbd8"'     88           88           `"YbbdP"'    `"YbbdP"Y8  88          `"8bbdP"Y8  88      88      88  88      88      88   `"Ybbd8"'  88          
+                                                          88                                                                                                                    aa,    ,88                                                                                          
+                                                          88                                                                                                                     "Y8bbdP"                                                                                           
+
+
+
+          88888888ba,                                         88                                                                                                                                                                                                                    
+          88      `"8b                                        88                                                                                                                                                                                                                    
+          88        `8b                                       88                                                                                                                                                                                                                    
+          88         88   ,adPPYba,  8b       d8   ,adPPYba,  88   ,adPPYba,   8b,dPPYba,    ,adPPYba,  8b,dPPYba,                                                                                                                                                                  
+          88         88  a8P_____88  `8b     d8'  a8P_____88  88  a8"     "8a  88P'    "8a  a8P_____88  88P'   "Y8                                                                                                                                                                  
+          88         8P  8PP"""""""   `8b   d8'   8PP"""""""  88  8b       d8  88       d8  8PP"""""""  88                                                                                                                                                                          
+          88      .a8P   "8b,   ,aa    `8b,d8'    "8b,   ,aa  88  "8a,   ,a8"  88b,   ,a8"  "8b,   ,aa  88                                                                                                                                                                          
+          88888888Y"'     `"Ybbd8"'      "8"       `"Ybbd8"'  88   `"YbbdP"'   88`YbbdP"'    `"Ybbd8"'  88                                                                                                                                                                          
+                                                                               88                                                                                                                                                                                                   
+                                                                               88                                                                                                                                                                                                   
+
+
+
+          88888888888                                                    88                                                                                                                                                                                                         
+          88                                                             ""                                                ,d                                                                                                                                                       
+          88                                                                                                               88                                                                                                                                                       
+          88aaaaa      8b,     ,d8  8b,dPPYba,    ,adPPYba,  8b,dPPYba,  88  88,dPYba,,adPYba,    ,adPPYba,  8b,dPPYba,  MM88MMM  ,adPPYba,   8b,dPPYba,                                                                                                                            
+          88"""""       `Y8, ,8P'   88P'    "8a  a8P_____88  88P'   "Y8  88  88P'   "88"    "8a  a8P_____88  88P'   `"8a   88    a8"     "8a  88P'   "Y8                                                                                                                            
+          88              |888|     88       d8  8PP"""""""  88          88  88      88      88  8PP"""""""  88       88   88    8b       d8  88                                                                                                                                    
+          88            ,d8" "8b,   88b,   ,a8"  "8b,   ,aa  88          88  88      88      88  "8b,   ,aa  88       88   88,   "8a,   ,a8"  88                                                                                                                                    
+          88888888888  8P'     `Y8  88`YbbdP"'    `"Ybbd8"'  88          88  88      88      88   `"Ybbd8"'  88       88   "Y888  `"YbbdP"'   88                                                                                                                                    
+									  88																																			</pre>			
+				</h2>
+			</div>
+		</div>
+	</foreignObject>
+</svg>
