@@ -64,7 +64,7 @@
 				}
 
 				.greet{
-					font-family: 'Monospace', sans-serif;
+					font-family: 'Quicksand', sans-serif;
 					font-size: 50px;
 				}
 
