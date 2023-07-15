@@ -37,7 +37,7 @@ export default function BlogPage(props:any){
           <div className="grid grid-cols-2 gap-6 right-0 overflow-y-scroll h-screen pt-32 absolute w-full sm:w-4/5 bg-black p-6 text-white">
             {
               blogs? blogs.map((blog:any, index:number)=>{
-                return <a href={"/blog/"+blog.blogID} className="w-full cursor-pointer bg-[#272822] px-5 py-3 text-2xl rounded-lg border-x-8 border-y-8 border-[#111111]">
+                return <a href={"/blog/"+blog.blogID} className="w-full flex flex-col gap-3 cursor-pointer bg-[#272822] px-5 py-3 text-2xl rounded-lg border-x-8 border-y-8 border-[#111111]">
                   <span className="text-3xl font-medium">{blog.title}</span>
                   <span className="text-xl">{blog.subtitle}</span>
                 </a>
@@ -48,11 +48,10 @@ export default function BlogPage(props:any){
     )
 }
 
-export async function getStaticProps(){
+export async function getServerSideProps(){
 
   const blogs = await Axios.get('/blog/blogs').then(response=>response.data).catch(err=>console.log("ERROR :",err.response.data.message))
 
-  console.log(blogs)
   return {
     props: {
       blogs : blogs,

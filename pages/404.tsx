@@ -1,7 +1,5 @@
 import Layout from "../components/Utils/Layout";
 import Navbar from "../components/Utils/Navbar";
-import { indie_flower, oswald } from '../components/Utils/Fonts';
-
 
 export default function NotFound(){
   return(
