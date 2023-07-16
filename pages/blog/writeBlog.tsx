@@ -1,4 +1,4 @@
-import axios from "../../Utils/Axios"
+import Axios from "../../Utils/Axios"
 import Link from "next/link";
 import { useRef, useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
@@ -14,6 +14,7 @@ export default function Write(){
     const subtitle = useRef('')
     const body = useRef('')
     const secret = useRef('')
+    const description = useRef('')
 
     const togglePreview = ()=>{
         if (!preview){
@@ -29,11 +30,14 @@ export default function Write(){
 
     const submitPost = async ()=>{
         // return true;
-        const res = axios.post('/blog/addBlog',{
+        const res = await Axios.post('/blog/addBlog',{
             title: title.current,
             subtitle: subtitle.current,
+            description: description.current,
             body: body.current,
             secretKey: secret.current
+        }).then(res=>{
+            console.log("SUCCESS:", res.data)
         }).catch(err =>{
             console.log("ERROR :", err)
         })
@@ -68,6 +72,7 @@ export default function Write(){
                     :<div className="h-full w-full">
                         <input className="p-6 pb-3 w-full text-5xl font-DM font-medium tracking-tight bg-black text-white outline-none"  placeholder="Title" onChange={e => title.current = e.target.value} defaultValue={title.current} />
                         <input className="pb-6 px-6 text-2xl w-full font-DM font-light tracking-tight bg-black text-white outline-none"  placeholder="Subtitle" onChange={e => subtitle.current = e.target.value} defaultValue={subtitle.current} />
+                        <input className="py-6 px-6 text-lg w-full font-DM font-light tracking-tight bg-[#222222] text-white outline-none"  placeholder="Description" onChange={e => description.current = e.target.value} defaultValue={subtitle.current} />
                         <textarea onChange={e=>{
                             body.current = e.target.value
                         }} rows={18} defaultValue={body.current} placeholder="Body goes here ..." className="bg-[#111111] w-full p-6 outline-none"/>

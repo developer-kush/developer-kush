@@ -18,8 +18,6 @@ export default function BlogPage(){
 
   // console.log("Router :",router)
 
-  console.log("Blog ID:",blogID)
-
   const [active, setActive]:[any ,any] = useState(null)
 
   useEffect(()=>{
@@ -31,6 +29,12 @@ export default function BlogPage(){
     })
     .catch(err=>console.log(err))
   },[blogID])
+
+  const prettyDate = (d: string) => {
+    let date = new Date(d)
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September','October','November','December']
+    return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`
+  }
 
   return(
     <div className="relative flex bg-black font-DM justify-center">
@@ -47,14 +51,14 @@ export default function BlogPage(){
       {/* <div className="md:w-3/4 w-full bg-[#1d2e23] p-6 text-white min-h-screen font-mono"> */}
       { active ?
         <div className="right-0 min-h-screen absolute w-full sm:w-4/5 bg-black text-white font-mono overflow-x-hidden">
-          { active.createdAt && <span className="bg-[#111111] mt-6 mx-6 px-2 py-1 flex items-center justify-center w-fit rounded-md">{active.createdAt.split('T')[0]}</span> }
+          { active.createdAt && <span className="bg-[#111111] mt-6 mx-6 px-2 py-1 flex items-center justify-center w-fit rounded-md">{prettyDate(active.createdAt)}</span> }
           <div className="py-6 mx-6 text-5xl font-DM font-medium tracking-tight">{active.title}</div>
           <div className="pb-6 mx-6 text-2xl font-DM font-light tracking-tight">{active.subtitle}</div>
-          <div id="BODY" className="relative min-h-screen w-full font-mono sm:px-20 py-6">
+          <div id="BODY" className="relative min-h-screen w-full font-mono px-5 sm:px-20 py-6">
             {/* <Renderer content={active.body}/> */}
             <RenderMD className="">{active.body}</RenderMD>
           </div>
-          <div className="bg-[#] h-20 font-DM flex items-center justify-center">More Content is on the way ... 😤</div>
+          <div className="h-40 bg-[#181818] font-DM flex items-center justify-center">Stay tuned for more ⏰</div>
         </div> : 
         <div className="absolute bg-black right-0 min-h-screen text-3xl text-center font-DM text-white flex items-center justify-center w-full sm:w-4/5">
           <span>Loading...</span>
