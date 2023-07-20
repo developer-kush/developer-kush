@@ -1,11 +1,15 @@
-import Axios from "../../Utils/Axios"
+import Axios from "../../../Utils/Axios"
 import Link from "next/link";
 import { useRef, useState } from "react";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-import remarkGfm from "remark-gfm";
-import RenderMD from "../../components/Utils/RenderMD";
+import RenderMD from "../../../components/Utils/RenderMD";
+import { useRouter } from "next/router";
 
-export default function Write(){
+export default function WriteEdit(){
+
+    const router = useRouter();
+    const { editQuery } = router.query;
+
+    console.log("Editing :", editQuery)
 
     const [preview, setPreview] = useState(false); 
     // const [body, setBody] = useState('');
