@@ -2,7 +2,7 @@ import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
-import Icons from "../../public/icons/icons"
+import Icons from "./Icons"
 
 export default function Layout ({ children, activePage, pageNavLinks }:any){
 

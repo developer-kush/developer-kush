@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Icons from '../../public/icons/icons';
+import Icons from './Icons';
 
 export default function Navbar(props:any){
 
@@ -10,16 +10,16 @@ export default function Navbar(props:any){
   const colorlist = ['hover:text-teal-500','hover:text-red-500','hover:text-yellow-500']
 
   return (
-    <div className={` font-quicksnad sticky z-10 top-0 flex backdrop-blur-md justify-between w-full h-20 text-white shadow-md bg-[#0f0f0f] -mb-20 `}>
+    <div className={`font-quicksnad sticky z-10 top-0 flex backdrop-blur-md justify-between w-full h-20 text-white shadow-md bg-[#0f0f0f] -mb-20 `}>
 
-      <Link href='/' className={'flex items-center ml-6 text-3xl sm:ml-20 font- font-bebas '}>
+      <Link href='/#INTRO' className={'flex items-center ml-6 text-3xl sm:ml-20 font- font-bebas '}>
         {
           ['K','U','S','H','A','G','R','A',' ','A','G','A','R','W','A','L'].map((i,idx)=>{
             return <span key={idx} className={`flex items-center h-20 transition-all duration-100 ease-in cursor-pointer hover:-translate-y-1 ${colorlist[idx%3]}`}>{i==' '?<div className='px-1 text-transparent'>.</div>:i}</span>
           })
         }
 
-        { title && <div className='hidden sm:flex px-2.5 py-0.5 m-3 rounded-full border-[0.1rem] items-center justify-center text-base font-DM'>{title}</div> }
+        { title && <div className='hidden sm:flex px-2.5 py-0.5 m-3 rounded-full border-[0.1rem] items-center justify-center text-sm font-DM bg-clip-text bg-gradient-to-br from-cyan-400 to-green-500 text-transparent'>{title}</div> }
       </Link>
 
       <div className='flex items-center text-[#cccccc] mx-2 sm:mr-20 font-quicksand font-bold '>

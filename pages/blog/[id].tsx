@@ -51,7 +51,8 @@ export default function BlogPage(){
       {/* <div className="md:w-3/4 w-full bg-[#1d2e23] p-6 text-white min-h-screen font-mono"> */}
       { active ?
         <div className="right-0 min-h-screen absolute w-full sm:w-4/5 bg-black text-white font-mono overflow-x-hidden">
-          { active.createdAt && <span className="bg-[#111111] mt-6 mx-6 px-2 py-1 flex items-center justify-center w-fit rounded-md">{prettyDate(active.createdAt)}</span> }
+          <Link href="/blog" className="w-full rounded-br-md px-6 pb-4 text-3xl bg-[#111] sm:hidden">..<span className="text-sm">/All_Blogs</span></Link>
+          { active.createdAt && <span className="bg-[#111111] mt-10 sm:mt-6 mx-6 px-2 py-1 flex items-center justify-center w-fit rounded-md">{prettyDate(active.createdAt)}</span> }
           <div className="py-6 mx-6 text-5xl font-DM font-medium tracking-tight">{active.title}</div>
           <div className="pb-6 mx-6 text-2xl font-DM font-light tracking-tight">{active.subtitle}</div>
           <div id="BODY" className="relative min-h-screen w-full font-mono px-5 sm:px-20 py-6">
