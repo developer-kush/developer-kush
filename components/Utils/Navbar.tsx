@@ -10,7 +10,7 @@ export default function Navbar(props:any){
   const colorlist = ['hover:text-teal-500','hover:text-red-500','hover:text-yellow-500']
 
   return (
-    <div className={`font-quicksnad sticky z-10 top-0 flex backdrop-blur-md justify-between w-full h-20 text-white shadow-md bg-[#0f0f0f] -mb-20 `}>
+    <div className={`font-quicksnad sticky z-10 top-0 flex backdrop--md justify-between w-full h-20 text-white shadow-md bg-gradient-to-b from-black to-transparent b0 -mb-20 `}>
 
       <Link href='/#INTRO' className={'flex items-center ml-6 text-3xl sm:ml-20 font- font-bebas '}>
         {
@@ -19,7 +19,7 @@ export default function Navbar(props:any){
           })
         }
 
-        { title && <div className='hidden sm:flex px-2.5 py-0.5 m-3 rounded-full border-[0.1rem] items-center justify-center text-sm font-DM bg-clip-text bg-gradient-to-br from-cyan-400 to-green-500 text-transparent'>{title}</div> }
+        { title && <div className='hidden sm:flex px-2.5 py-1.5 m-3 rounded-full items-center justify-center text-xs font-DM bg-opacity-30 font-bold bg-gradient-to-br from-cyan-400 to-violet-500 text-black'>{title}</div> }
       </Link>
 
       <div className='flex items-center text-[#cccccc] mx-2 sm:mr-20 font-quicksand font-bold '>

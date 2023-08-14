@@ -85,6 +85,6 @@ export async function getStaticProps(){
       blogs : blogs,
       fallback : true
     },
-    revalidate: 60
+    revalidate: 300
   }
 }
