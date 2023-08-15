@@ -5,12 +5,10 @@ export default function Navbar(props:any){
 
   const {title, className} = props;
 
-  console.log(title, className)
-
   const colorlist = ['hover:text-teal-500','hover:text-red-500','hover:text-yellow-500']
 
   return (
-    <div className={`font-quicksnad sticky z-10 top-0 flex backdrop--md justify-between w-full h-20 text-white shadow-md bg-gradient-to-b from-black to-transparent b0 -mb-20 `}>
+    <div id="NAVBAR" className={`font-quicksnad sticky z-10 top-0 flex backdrop--md justify-between w-full h-20 text-white shadow-md bg-gradient-to-b from-black to-transparent b0 -mb-20 `}>
 
       <Link href='/#INTRO' className={'flex items-center ml-6 text-3xl sm:ml-20 font- font-bebas '}>
         {

@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import Navbar from '../components/Utils/Navbar';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { nextjslogo, tailwindcsslogo } from "../components/base64images"
+import { skills } from "../components/Utils/Values"
 
 const Field = ( title:string, type:string , elementRef:any)=>{
 
@@ -17,6 +18,7 @@ const Field = ( title:string, type:string , elementRef:any)=>{
 import React from 'react';
 
 const FuturisticDisplay = () => {
+  return <div></div>
   return (
     <div className="relative w-96 h-60 bg-blue-500 rounded-lg overflow-hidden">
       <div className="absolute w-full h-2 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 top-1/2 transform -translate-y-1/2"></div>
@@ -43,41 +45,71 @@ const FuturisticDisplay = () => {
   );
 };
 
-export default function Home() {
 
+const useRandom = (values: Array<any>) => {
+  const [randomValue, setRandomValue] = useState(null);
+
+  const getRandomValue = () => {
+    let randomIndex = Math.floor(Math.random() * values.length);
+    // while (values[randomIndex] === randomValue)
+    //   randomIndex = Math.floor(Math.random() * values.length);
+    return values[randomIndex];
+  };
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setRandomValue(getRandomValue());
+    }
+  }, [values]);
+
+  const changeRandomValue = () => {
+    setRandomValue(getRandomValue());
+  };
+
+  return [randomValue, changeRandomValue];
+};
+
+const INTRO = () => {
+  const [word, changeWord] : any = useRandom(["Problem Solver", "Software Dev", "Digital Artist", "Software Geek", "Creative Thinker", "Tech Enthusiast"])
+  
   useEffect(()=>{
-    const entries = ['ABOUT'].map(ele=>document.getElementById(ele))
-
-    const scrollObserver = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if (entry.isIntersecting){
-          console.log("ENTRY :",entry.target.id)
-        }
-      })
-    })
-
-    // scrollObserver.observe(document.getElementById('ABOUT'))
+    const wordChangeInterval = setInterval(changeWord, 2000)
+    return ()=>clearInterval(wordChangeInterval)
   },[])
 
+  return <div id="INTRO" className={`relative flex w-full h-screen bg-black p-52 bg-fit isolate`}>
+
+
+        <div className='text-white h-full w-full mx-auto font-DM font-semibold  text-4xl'>
+          <div>Hi 🙃, I am Kushagra,</div>
+          <div className='text-8xl my-5 animate-pulse'>{word}</div>
+          <div className='mb-4 '>& a Versatile Software Craftsman ,</div> 
+          <div>Empowering Solutions</div>
+        </div>
+      </div>
+}
+
+export default function Home() {
+
+  const handleScrollAnims = () => {
+    const scrollPos : number = document.getElementById("HomePage")?.scrollTop || 0
+    const PageNo = scrollPos / window.innerHeight
+    
+    if (PageNo < 1) document.getElementById("INTRO")?.style.setProperty("opacity", `${Math.max(0, 1- 1.5*PageNo)}`)
+    if (PageNo >= 0.8 && PageNo < 2) document.getElementById("NAVBAR")?.style.setProperty("background-color", `black`)
+    else document.getElementById("NAVBAR")?.style.removeProperty("background-color")
+  }
+
   return(
-    <div id="HomePage" className={`isolate scroll-smooth absolute h-[100vh] bg-black overflow-y-scroll overflow-x-hidden select-none w-full`}>
+    <div onScroll={handleScrollAnims} id="HomePage" className={`isolate scroll-smooth absolute h-[100vh] bg-black overflow-y-scroll overflow-x-hidden select-none w-full`}>
       <title>Kushagra Agarwal</title>
       <Navbar title='Theory' className="bg-transparent invert"/>
       <div className='fixed h-32 bg-gradient-to-b from-black via-black '></div>
       {/* <div className='absolute left-0 h-full w-40 bg-gradient-to-r pointer-events-none from-black z-50'></div> */}
 
       {/* <div className='fixed h-full w-full bg-gradient-flow'> */}
-      <div id="INTRO" className={`flex w-full h-screen bg-black p-52 bg-fit isolate`}>
-        {/* <div className='flex -z-10 absolute h-full w-full bg-black bg-opacity-70 items-end justify-end p-5'></div> */}
-       
-
-        <div className='text-white h-full w-fit mx-auto font-DM font-semibold  text-4xl'>
-          <div>Hi 🙃, I am Kushagra,</div>
-          <div className='text-8xl my-5'>Problem Solver 🛠</div>
-          <div className='mb-4 '>& a Versatile Software Craftsman ,</div> 
-          <div>Empowering Solutions</div>
-        </div>
-      </div>
+      
+      <INTRO />
 
       {/* <div className='flex flex-col absolute bottom-0 left-0 bg-black isolate h-fit w-20 opacity-90'>
         <div className='absolute pointer-events-none h-screen z-50 bg-gradient-to-r from-black w-20 bottom-0'></div>
@@ -87,13 +119,27 @@ export default function Home() {
         <div className='flex cursor-pointer justify-end items-center h-16 w-32 bg-gradient-to-br from-yellow-500 to-yellow-500 rounded-r-lg -translate-x-10 hover:translate-x-0 transition-all ease-in-out duration-100'><div className="cursor-pointer flex items-center justify-end m-5 font-DM">Contact</div></div>
       </div> */}
 
-      {/* <div id="ABOUT" className='min-h-screen bg-gradient-to-br from-cyan-500 via-violet-500 to-violet-500'>
-        
-      </div> */}
+      <div id="ABOUT" className='relative min-h-screen h-full w-full bg-gradient-to-br from-cyan-500 via-violet-500 to-violet-500 flex items-center justify-center'>
+        <div className='relative h-4/5 w-4/5 bg-black rounded-md bg-opacity-70 backdrop-blur-sm'>
+          <div className='font-bebas text-6xl mx-20 my-10 mt-20 text-white'>ABOUT ME</div>
+          <div className='text-2xl font-s leading-10 px-32 py-auto font-DM text-white p-10 h-full w-full'>
+          As a "Human" Software Developer, I'm not just fluent in code; I'm also fluent in creativity. When software problems throw a curveball, I swing back with innovative solutions that hit it out of the park. My mind is a toolbox of unconventional ideas, and I'm not afraid to use them to untangle the trickiest of code knots. Challenges are like puzzles, and I thrive on solving them with a dash of ingenuity.
+          </div>
+        </div>
+      </div>
 
 
       <div id="SKLLS" className='min-h-screen bg-black'>
-        
+        <div className='m-20 mb-10 font-bebas text-white text-6xl'>SKILLS & TECHS</div>
+        <div className='h-auto mt-10 mx-20 font-DM text-lg font-semibold'>
+          {
+            skills.map((skill, index) => {
+              return <div className={`${skill[1]} inline-block m-5  py-2 px-3 w-fit rounded-sm`}>
+                {skill[0]}
+              </div>
+            })
+          }
+        </div>
       </div>
 
       <div id="PROJECTS" className='min-h-screen bg-black'>
@@ -124,11 +170,11 @@ export default function Home() {
         Made with 💓 using 
         <span>
           <Image src={nextjslogo}
-          className='invert mx-2'
+          className='invert mx-2 h-5 w-auto'
           width={70} height={60} alt="NEXT.js" draggable={false}/>
         </span> & <span>
           <Image src={tailwindcsslogo}
-          className="mx-2" width={30} height={10} alt="Tailwind CSS" draggable={false}/>
+          className="mx-2 h-5 w-auto" width={20} height={20} alt="Tailwind CSS" draggable={false}/>
         </span>
       </div>
 
