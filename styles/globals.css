@@ -57,12 +57,24 @@
       transform: scale(1) translateY(0px);
     }
   }
-  @keyframes slideright {
+
+  @keyframes slide-in-expand {
+    0% {
+      @apply -translate-x-full
+    }
+    100%{
+      @apply translate-x-0
+    }
+  }
+  .slide-expand{
+    animation: slide-in-expand 10s ease-in-out linear
+  }
+  /* @keyframes slideright {
     0%{ @apply -translate-x-full}
     100%{ @apply translate-x-0}
   }
   @keyframes expanddown {
     0%{ @apply h-0 overflow-x-hidden}
     100%{ @apply h-full}
-  }
+  } */
 }

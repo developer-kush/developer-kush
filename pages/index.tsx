@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import { nextjslogo, tailwindcsslogo } from "../components/base64images"
 import { skills } from "../components/Utils/Values"
 
+// const skills:any = import("../components/Utils/Values")
+
 const Field = ( title:string, type:string , elementRef:any)=>{
 
   if (type!=='string'){
@@ -13,6 +15,7 @@ const Field = ( title:string, type:string , elementRef:any)=>{
   return <div>
     <input onChange={e=>elementRef.current=e.target.value} className='outline-none bg-transparent bg-[#272 border-2 border-[#e3e3e3] p-4 w-[80%] h-fit font-DM text-md rounded-lg' placeholder={title}/>
   </div>
+
 }
 
 import React from 'react';
@@ -81,7 +84,9 @@ const INTRO = () => {
 
 
         <div className='text-white h-full w-full mx-auto font-DM font-semibold  text-4xl'>
-          <div>Hi 🙃, I am Kushagra,</div>
+          <div>Hi <span className='relative group'>
+            🙃 
+          </span>, I am Kushagra,</div>
           <div className='text-8xl my-5 animate-pulse'>{word}</div>
           <div className='mb-4 '>& a Versatile Software Craftsman ,</div> 
           <div>Empowering Solutions</div>
@@ -120,7 +125,7 @@ export default function Home() {
       </div> */}
 
       <div id="ABOUT" className='relative min-h-screen h-full w-full bg-gradient-to-br from-cyan-500 via-violet-500 to-violet-500 flex items-center justify-center'>
-        <div className='relative h-4/5 w-4/5 bg-black rounded-md bg-opacity-70 backdrop-blur-sm'>
+        <div className='relative h-4/5 w-4/5 bg-black rounded-md bg-opacity-70 backdrop-blur-sm slide-expand'>
           <div className='font-bebas text-6xl mx-20 my-10 mt-20 text-white'>ABOUT ME</div>
           <div className='text-2xl font-s leading-10 px-32 py-auto font-DM text-white p-10 h-full w-full'>
           As a "Human" Software Developer, I'm not just fluent in code; I'm also fluent in creativity. When software problems throw a curveball, I swing back with innovative solutions that hit it out of the park. My mind is a toolbox of unconventional ideas, and I'm not afraid to use them to untangle the trickiest of code knots. Challenges are like puzzles, and I thrive on solving them with a dash of ingenuity.
@@ -128,13 +133,27 @@ export default function Home() {
         </div>
       </div>
 
-
       <div id="SKLLS" className='min-h-screen bg-black'>
         <div className='m-20 mb-10 font-bebas text-white text-6xl'>SKILLS & TECHS</div>
         <div className='h-auto mt-10 mx-20 font-DM text-lg font-semibold'>
+          {/* {
+            Object.keys(skills).map((category:string ,index:any)=>{
+              return <div className='flex items-center w-screen -ml-20 px-20'>
+              <div className='text-white font-DM text-3xl'> {category}</div>
+              <div className="h-fit" key={index}>
+                {
+                  skills[category].map((skill:string[] , index:number)=>{
+                    return <div key={index} className={`${skill[1]} inline-block m-5  py-2 px-3 w-fit rounded-sm`}>
+                    {skill[0]}
+                  </div>
+                  })
+                }
+              </div></div>
+            })
+          } */}
           {
             skills.map((skill, index) => {
-              return <div className={`${skill[1]} inline-block m-5  py-2 px-3 w-fit rounded-sm`}>
+              return <div key={index} className={`${skill[1]} inline-block m-5  py-2 px-3 w-fit rounded-sm`}>
                 {skill[0]}
               </div>
             })
