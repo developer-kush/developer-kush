@@ -2,8 +2,9 @@ import Axios from "../../../Utils/Axios"
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Icons from "../../../components/Utils/Icons";
 
-import { useRef, useState } from "react";
+import { use, useMemo, useRef, useState } from "react";
 import RenderMD from "../../../components/Utils/RenderMD";
 
 function handleImageUpload(): Promise<string | undefined> {
@@ -20,9 +21,7 @@ function handleImageUpload(): Promise<string | undefined> {
             resolve(base64);
           };
           reader.readAsDataURL(file);
-        } else {
-          resolve("");
-        }
+        } else resolve("");
       };
       input.click();
     });
@@ -32,18 +31,35 @@ export default function Write(){
 
     const [preview, setPreview] = useState(false);
     const [refresh, setRefresh] = useState(false);
-    const toggleRefresh = () => {
-        setRefresh(refresh => !refresh);
-    }
+    
+
+    // const images = 
 
     const title = useRef('')
     const subtitle = useRef('')
     const body = useRef('')
     const secret = useRef('')
     const description = useRef('')
+    const images:any = useRef({})
 
-    const togglePreview = ()=>{
-        setPreview(preview => !preview);
+    const prevData = useMemo(()=>{
+        let arr = body.current.split(":|:")
+        let res = ""
+        for (let idx in arr){
+            if (idx&1){
+                if (images.current[arr[idx]]) res+= images.current[arr[idx]]
+            } else res += arr[idx]
+        }
+        return res
+    },[body.current])
+
+    const depsChange = useRef(false)
+
+    const toggleRefresh = () => setRefresh(refresh => !refresh);
+
+    const togglePreview = ()=> {
+        if (preview){ setPreview(false); depsChange.current = false; return; }
+        setPreview(true)
     }
 
     const submitPost = async ()=>{
@@ -64,14 +80,14 @@ export default function Write(){
         })
 
         await res.catch(err=>console.log(err))
-        console.log("Result:",res)
     }
 
     const addImage = async ()=>{
         const data = await handleImageUpload()
-        body.current = `${body.current} \n\n![Image](${data})\n\n`
-        console.log("BODY:", body.current)
-        toggleRefresh()
+        const imgID = Math.random().toString(36).substring(7);
+        images.current[imgID] = data
+        body.current = `${body.current} \n\n![Image](:|:${imgID}:|:)\n\n`
+        setTimeout(()=>toggleRefresh(), 500)
     }
 
     return (
@@ -85,7 +101,7 @@ export default function Write(){
                 <input type="password" className="outline-none bg-black text-white p-3 py-4 my-0 w-full text-center" placeholder="Secret Key ..." onChange={e=>{
                     secret.current = e.target.value
                 }} />
-                <div onClick={addImage} className={`${preview?"bg-red-500":"bg-blue-500"} mt-10 hover:${preview?"bg-red-600":"bg-blue-600"} text-lg font-medium flex items-center justify-center px-10 py-5 rounded-md w-40 cursor-pointer transition-colors duration-300 font-DM`}>Add Image</div>
+                <div onClick={addImage} className={`${preview?"opacity-0":"bg-gray-800"} mt-10 hover:bg-gray-500 text-lg font-medium flex items-center justify-center px-10 py-5 rounded-md w-40 cursor-pointer transition-colors duration-300 font-DM text-4xl`}>{Icons.img}</div>
                 <div onClick={togglePreview} className={`${preview?"bg-red-500":"bg-blue-500"} mt-10 hover:${preview?"bg-red-600":"bg-blue-600"} text-lg font-medium flex items-center justify-center px-10 py-5 rounded-md w-40 cursor-pointer transition-colors duration-300 font-DM`}>{preview?"Edit":"Preview"}</div>
                 <div onClick={submitPost} className={`bg-green-500 hover:bg-blue-600" mt-5 text-lg font-medium flex items-center justify-center px-10 py-5 rounded-md w-40 cursor-pointer transition-colors duration-300 font-DM`}>Submit</div>
             </div>
@@ -96,7 +112,7 @@ export default function Write(){
                         <div className="mt-6 mx-6 py-6 text-5xl font-DM font-medium tracking-tight">{title.current}</div>
                         <div className="mx-6 pb-6 text-2xl font-DM font-light tracking-tight">{subtitle.current}</div>
                         <div className="mx-6 relative font-DM text-lg mt-5 px-10 md:px-24 ">
-                            <RenderMD className="" >{body.current}</RenderMD>
+                            <RenderMD className="" >{prevData}</RenderMD>
                         </div>
                         <div className="bg-[#151515] min-h-[300px] mt-10"></div>
                     </div>

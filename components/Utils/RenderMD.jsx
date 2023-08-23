@@ -17,6 +17,7 @@ const RenderMD = ({ children, className }) => {
       return <p className="py-2 font-DM"> {children}  </p>
     },
     img({ node, alt, src, children, className, ...props }) {
+      if (!src) return null;
       return (
         <div className="flex flex-col w-full my-3 items-center justify-center">
           <Image draggable={false} className="pb-5 object-cover rounded-md overflow-hidden mx-auto" width={600} height={500} src={src} alt={alt} />
