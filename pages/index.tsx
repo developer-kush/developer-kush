@@ -5,20 +5,6 @@ import { useEffect, useRef, useState } from 'react';
 import { nextjslogo, tailwindcsslogo } from "../components/base64images"
 import { skills } from "../components/Utils/Values"
 
-// const skills:any = import("../components/Utils/Values")
-
-// const Field = ( title:string, type:string , elementRef:any)=>{
-
-//   if (type!=='string'){
-//     return null
-//   }
-
-//   return <div>
-//     <input onChange={e=>elementRef.current=e.target.value} className='outline-none bg-transparent bg-[#272 border-2 border-[#e3e3e3] p-4 w-[80%] h-fit font-DM text-md rounded-lg' placeholder={title}/>
-//   </div>
-
-// }
-
 const randStr = (size : number = 1000) => {
   const str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
   let ret = ""
@@ -50,21 +36,6 @@ const useRandom = (values: Array<any>) => {
     if (typeof window !== 'undefined') {
       setRandomValue(getRandomValue());
     }
-    const radialMask:any = document.querySelector('.radial-mask');
-
-    const maskedit = (e:any) => {
-      // Calculate the cursor position as a percentage of the window's width and height
-      const x = (e.clientX / window.innerWidth) * 100;
-      const y = (e.clientY / window.innerHeight) * 100;
-      
-      // Set the CSS variables with the cursor position
-      radialMask.style.setProperty('--x', `${x}%`);
-      radialMask.style.setProperty('--y', `${y}%`);
-    }
-    const masklistener:any = document.addEventListener('mousemove', maskedit);
-
-    return ()=> document.removeEventListener('mousemove', masklistener)
-
   }, [values]);
 
   const changeRandomValue = () => {
@@ -80,6 +51,20 @@ const INTRO = () => {
   useEffect(()=>{
     const wordChangeInterval = setInterval(changeWord, 4000)
     moveAnims()
+    const radialMask:any = document.querySelector('.radial-mask');
+
+    const maskedit = (e:any) => {
+      // Calculate the cursor position as a percentage of the window's width and height
+      const x = (e.clientX / window.innerWidth) * 100;
+      const y = (e.clientY / window.innerHeight) * 100;
+      
+      // Set the CSS variables with the cursor position
+      radialMask.style.setProperty('--x', `${x}%`);
+      radialMask.style.setProperty('--y', `${y}%`);
+    }
+    const masklistener:any = document.addEventListener('mousemove', maskedit);
+
+    return ()=> document.removeEventListener('mousemove', masklistener)
     return ()=>clearInterval(wordChangeInterval)
   },[])
 
@@ -103,7 +88,7 @@ const INTRO = () => {
         
         <div className='text-white w-8/12 z-10 mx-auto font-DM font-semibold  text-5xl'>
           <div>Hi 🙃, I am Kushagra,</div>
-          <div className='text-8xl my-5 animate-pulse'>{word}</div>
+          <div className='text-8xl my-5'>{word}</div>
           <div className='mb-4 '>& a Versatile Software Craftsman ,</div> 
           <div>Empowering Solutions</div>
         </div>
