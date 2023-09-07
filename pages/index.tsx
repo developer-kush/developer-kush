@@ -1,61 +1,48 @@
+import React from 'react';
 import Image from 'next/image';
 import Navbar from '../components/Utils/Navbar';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { nextjslogo, tailwindcsslogo } from "../components/base64images"
 import { skills } from "../components/Utils/Values"
 
 // const skills:any = import("../components/Utils/Values")
 
-const Field = ( title:string, type:string , elementRef:any)=>{
+// const Field = ( title:string, type:string , elementRef:any)=>{
 
-  if (type!=='string'){
-    return null
+//   if (type!=='string'){
+//     return null
+//   }
+
+//   return <div>
+//     <input onChange={e=>elementRef.current=e.target.value} className='outline-none bg-transparent bg-[#272 border-2 border-[#e3e3e3] p-4 w-[80%] h-fit font-DM text-md rounded-lg' placeholder={title}/>
+//   </div>
+
+// }
+
+const randStr = (size : number = 1000) => {
+  const str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+  let ret = ""
+  for (let i = 0; i < size; i++) {
+    ret += str[Math.floor(Math.random() * str.length)]
   }
-
-  return <div>
-    <input onChange={e=>elementRef.current=e.target.value} className='outline-none bg-transparent bg-[#272 border-2 border-[#e3e3e3] p-4 w-[80%] h-fit font-DM text-md rounded-lg' placeholder={title}/>
-  </div>
-
+  return ret
 }
 
-import React from 'react';
+const moveAnims = ()=> {
+  const display:any = document.getElementById("HERO-DISPLAY")
+  let resstring = ""
+  for (let i = 0; i < Math.round(window.innerHeight/26); i++) {
+    resstring += randStr(window.innerWidth/9 + 50)+"<br/>"
+  }
+  display.innerHTML = resstring
 
-const FuturisticDisplay = () => {
-  return <div></div>
-  return (
-    <div className="relative w-96 h-60 bg-blue-500 rounded-lg overflow-hidden">
-      <div className="absolute w-full h-2 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 top-1/2 transform -translate-y-1/2"></div>
-      <div className="absolute w-2 h-full bg-gradient-to-b from-blue-400 via-blue-500 to-blue-600 left-1/2 transform -translate-x-1/2"></div>
-      <div className="absolute w-full h-2 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 bottom-1/2 transform -translate-y-1/2"></div>
-      <div className="absolute w-2 h-full bg-gradient-to-b from-blue-400 via-blue-500 to-blue-600 right-1/2 transform -translate-x-1/2"></div>
-      <div className="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-bl from-blue-500 via-blue-600 to-blue-700 opacity-50"></div>
-      <div className="absolute w-96 h-60 border-2 border-blue-600 border-solid rounded-lg"></div>
-      <div className="absolute w-1 h-1 bg-blue-600 rounded-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
-      <div className="absolute w-2 h-2 bg-blue-600 rounded-full top-1/4 left-1/4"></div>
-      <div className="absolute w-2 h-2 bg-blue-600 rounded-full top-1/4 right-1/4"></div>
-      <div className="absolute w-2 h-2 bg-blue-600 rounded-full bottom-1/4 left-1/4"></div>
-      <div className="absolute w-2 h-2 bg-blue-600 rounded-full bottom-1/4 right-1/4"></div>
-      <div className="absolute w-1 h-1 bg-blue-600 rounded-full bottom-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
-      <div className="absolute w-1 h-1 bg-blue-600 rounded-full top-1/2 left-1/4"></div>
-      <div className="absolute w-1 h-1 bg-blue-600 rounded-full top-1/2 right-1/4"></div>
-      <div className="absolute w-1 h-1 bg-blue-600 rounded-full bottom-1/2 left-1/4"></div>
-      <div className="absolute w-1 h-1 bg-blue-600 rounded-full bottom-1/2 right-1/4"></div>
-      <div className="absolute w-1 h-1 bg-blue-600 rounded-full top-1/4 left-1/2 transform -translate-x-1/2"></div>
-      <div className="absolute w-1 h-1 bg-blue-600 rounded-full top-1/4 right-1/2 transform -translate-x-1/2"></div>
-      <div className="absolute w-1 h-1 bg-blue-600 rounded-full bottom-1/4 left-1/2 transform -translate-x-1/2"></div>
-      <div className="absolute w-1 h-1 bg-blue-600 rounded-full bottom-1/4 right-1/2 transform -translate-x-1/2"></div>
-    </div>
-  );
-};
-
+}
 
 const useRandom = (values: Array<any>) => {
   const [randomValue, setRandomValue] = useState(null);
 
   const getRandomValue = () => {
     let randomIndex = Math.floor(Math.random() * values.length);
-    // while (values[randomIndex] === randomValue)
-    //   randomIndex = Math.floor(Math.random() * values.length);
     return values[randomIndex];
   };
 
@@ -63,6 +50,21 @@ const useRandom = (values: Array<any>) => {
     if (typeof window !== 'undefined') {
       setRandomValue(getRandomValue());
     }
+    const radialMask:any = document.querySelector('.radial-mask');
+
+    const maskedit = (e:any) => {
+      // Calculate the cursor position as a percentage of the window's width and height
+      const x = (e.clientX / window.innerWidth) * 100;
+      const y = (e.clientY / window.innerHeight) * 100;
+      
+      // Set the CSS variables with the cursor position
+      radialMask.style.setProperty('--x', `${x}%`);
+      radialMask.style.setProperty('--y', `${y}%`);
+    }
+    const masklistener:any = document.addEventListener('mousemove', maskedit);
+
+    return ()=> document.removeEventListener('mousemove', masklistener)
+
   }, [values]);
 
   const changeRandomValue = () => {
@@ -76,37 +78,55 @@ const INTRO = () => {
   const [word, changeWord] : any = useRandom(["Problem Solver", "Software Dev", "Digital Artist", "Software Geek", "Creative Thinker", "Tech Enthusiast"])
   
   useEffect(()=>{
-    const wordChangeInterval = setInterval(changeWord, 2000)
+    const wordChangeInterval = setInterval(changeWord, 4000)
+    moveAnims()
     return ()=>clearInterval(wordChangeInterval)
   },[])
 
-  return <div id="INTRO" className={`relative flex w-full h-screen bg-black p-52 bg-fit isolate`}>
+  // const rstring = useRef("Hi")
+  // useEffect(()=>{
+  //   rstring.current = randStr(5000)
 
+  // })
 
-        <div className='text-white h-full w-full mx-auto font-DM font-semibold  text-4xl'>
-          <div>Hi <span className='relative group'>
-            🙃 
-          </span>, I am Kushagra,</div>
+  
+
+  return <div id="INTRO" onPointerMove={moveAnims} className={`relative items-center justify-center flex w-full h-screen bg-black bg-fit isolate`}>
+    
+        {/* <Image src="/Screens_2.jpeg" height={720} width={1080} alt="Screens" className='absolute h-screen w-screen' /> */}
+
+        <div id="HERO-SCREEN" className='absolute text-white h-screen w-screen radial-mask'>
+          <p id="HERO-DISPLAY" className="h-full bg-black opacity-40 leading-tight hero-display-background w-full overflow-x-clip font-mono pt-20 whitespace-normal">
+            
+          </p>
+        </div>
+        
+        <div className='text-white w-8/12 z-10 mx-auto font-DM font-semibold  text-5xl'>
+          <div>Hi 🙃, I am Kushagra,</div>
           <div className='text-8xl my-5 animate-pulse'>{word}</div>
           <div className='mb-4 '>& a Versatile Software Craftsman ,</div> 
           <div>Empowering Solutions</div>
         </div>
+
       </div>
 }
 
 export default function Home() {
 
-  const handleScrollAnims = () => {
+  const scrollAnims = () => {
     const scrollPos : number = document.getElementById("HomePage")?.scrollTop || 0
     const PageNo = scrollPos / window.innerHeight
     
-    if (PageNo < 1) document.getElementById("INTRO")?.style.setProperty("opacity", `${Math.max(0, 1- 1.5*PageNo)}`)
+    if (PageNo < 1) {
+      document.getElementById("INTRO")?.style.setProperty("opacity", `${Math.max(0, 1- 1.5*PageNo)}`)
+      moveAnims()
+    }
     if (PageNo >= 0.8 && PageNo < 2) document.getElementById("NAVBAR")?.style.setProperty("background-color", `black`)
     else document.getElementById("NAVBAR")?.style.removeProperty("background-color")
   }
 
   return(
-    <div onScroll={handleScrollAnims} id="HomePage" className={`isolate scroll-smooth absolute h-[100vh] bg-black overflow-y-scroll overflow-x-hidden select-none w-full`}>
+    <div onScroll={scrollAnims} id="HomePage" className={`isolate scroll-smooth absolute h-[100vh] bg-black overflow-y-scroll overflow-x-hidden select-none w-full`}>
       <title>Kushagra Agarwal</title>
       <Navbar title='Theory' className="bg-transparent invert"/>
       <div className='fixed h-32 bg-gradient-to-b from-black via-black '></div>
@@ -176,7 +196,7 @@ export default function Home() {
         </div>
         <div className='relative opacity-75 shadow-2xl py-5 pl-5 flex my-10 flex-col bg-gradient-to-r from-black to-[#121212] bg-opacity-80 rounded-l-2xl items-center justify-center w-3/5 h-auto'>
           <div className='h-full shadow-inner rounded-l-2xl  w-full bg-blue-600 bg-opacity-80'>
-            <span className='absolute'><FuturisticDisplay/></span>
+            <span className='absolute'></span>
             <div></div>
           </div>
         </div>

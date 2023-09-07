@@ -20,7 +20,7 @@ const RenderMD = ({ children, className }) => {
       if (!src) return null;
       return (
         <div className="flex flex-col w-full my-3 items-center justify-center">
-          <Image draggable={false} className="pb-5 object-cover rounded-md overflow-hidden mx-auto" width={600} height={500} src={src} alt={alt} />
+          <Image draggable={true} className="pb-5 object-cover rounded-md overflow-hidden mx-auto" width={600} height={500} src={src} alt={alt} />
           <div className="text-sm fontbold font-DM">{alt}</div>
         </div>
       );

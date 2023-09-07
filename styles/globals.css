@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&family=Loved+by+the+King&family=Quicksand:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&family=Loved+by+the+King&family=Quicksand:wght@400;600;700&family=Annie+Use+Your+Telescope&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -20,18 +20,28 @@
     background-color: #cccccc;
   } */
 
-  .font-king{
-    font-family: 'Loved By The King', cursive;
+  .radial-mask {
+    width: 100vw;
+    height: 100vh;
+    background-color: #000; /* Fallback background color */
+    mask-image: radial-gradient(circle at var(--x, 50%) var(--y, 50%), #000, transparent 35%);
+    -webkit-mask-image: radial-gradient(circle at var(--x, 50%) var(--y, 50%), #000, transparent 35%);
   }
-  .font-DM{
-    font-family: 'DM sans', sans-serif;
+
+  /* .circle-mask{
+    -webkit-mask-image: radial-gradient(white, black);
+    mask-image: radial-gradient(white, black);
+  } */
+
+  .hero-display-background{
+    background: linear-gradient(transparent 90%, rgba(255,255,255,0.2) 90%), repeating-linear-gradient(90deg, transparent, transparent 1px, rgba(255,255,255,0.2) 1px, rgba(255,255,255,0.2) 2px);
   }
-  .font-quicksand{
-    font-family: 'Quicksand', sans-serif;
-  }
-  .font-bebas{
-    font-family: 'Bebas Neue', cursive;
-  }
+
+  .font-king{ font-family: 'Loved By The King', cursive; }
+  .font-DM{ font-family: 'DM sans', sans-serif; }
+  .font-quicksand{ font-family: 'Quicksand', sans-serif; }
+  .font-bebas{ font-family: 'Bebas Neue', cursive; }
+  /* .font-annie{ font: 'Annie Use Your Telescope', bebas; } */
 
   .heroAnim{
     animation: stomp 1.5s cubic-bezier(0.455, 0.03, 0.515, 0.955)
