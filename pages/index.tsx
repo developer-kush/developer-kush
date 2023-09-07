@@ -17,7 +17,7 @@ const randStr = (size : number = 1000) => {
 const moveAnims = ()=> {
   const display:any = document.getElementById("HERO-DISPLAY")
   let resstring = ""
-  for (let i = 0; i < Math.round(window.innerHeight/26); i++) {
+  for (let i = 0; i < Math.round(window.innerHeight/20); i++) {
     resstring += randStr(window.innerWidth/9 + 50)+"<br/>"
   }
   display.innerHTML = resstring
@@ -52,6 +52,7 @@ const INTRO = () => {
     const wordChangeInterval = setInterval(changeWord, 4000)
     moveAnims()
     const radialMask:any = document.querySelector('.radial-mask');
+    const maskIMG:any = document.getElementById('MASK-IMAGE');
 
     const maskedit = (e:any) => {
       // Calculate the cursor position as a percentage of the window's width and height
@@ -61,31 +62,33 @@ const INTRO = () => {
       // Set the CSS variables with the cursor position
       radialMask.style.setProperty('--x', `${x}%`);
       radialMask.style.setProperty('--y', `${y}%`);
+      // maskIMG.style.setProperty('--x', `${x}%`);
+      // maskIMG.style.setProperty('--y', `${y}%`);
     }
     const masklistener:any = document.addEventListener('mousemove', maskedit);
 
-    return ()=> document.removeEventListener('mousemove', masklistener)
-    return ()=>clearInterval(wordChangeInterval)
+    return ()=> {
+      document.removeEventListener('mousemove', masklistener)
+      clearInterval(wordChangeInterval)
+    }
   },[])
-
-  // const rstring = useRef("Hi")
-  // useEffect(()=>{
-  //   rstring.current = randStr(5000)
-
-  // })
-
-  
 
   return <div id="INTRO" onPointerMove={moveAnims} className={`relative items-center justify-center flex w-full h-screen bg-black bg-fit isolate`}>
     
         {/* <Image src="/Screens_2.jpeg" height={720} width={1080} alt="Screens" className='absolute h-screen w-screen' /> */}
 
+
         <div id="HERO-SCREEN" className='absolute text-white h-screen w-screen radial-mask'>
-          <p id="HERO-DISPLAY" className="h-full bg-black opacity-40 leading-tight hero-display-background w-full overflow-x-clip font-mono pt-20 whitespace-normal">
+          <p id="HERO-DISPLAY" className="text-sm h-full bg-clip-text text-transparent bg-[url('/Screens_2.jpeg')] bg-fit bg-cover  leading-tight hero-display-background w-full overflow-x-clip font-mono pt-20 whitespace-normal">
             
           </p>
         </div>
         
+        {/* <div id="MASK-IMAGE" className='absolute h-full w-full radial-mask m-10'>
+          <div className="m-5 rounded-md h-[95%] w-[97%] opacity-60">
+          </div>
+        </div> */}
+
         <div className='text-white w-8/12 z-10 mx-auto font-DM font-semibold  text-5xl'>
           <div>Hi 🙃, I am Kushagra,</div>
           <div className='text-8xl my-5'>{word}</div>

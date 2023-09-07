@@ -24,8 +24,8 @@
     width: 100vw;
     height: 100vh;
     background-color: #000; /* Fallback background color */
-    mask-image: radial-gradient(circle at var(--x, 50%) var(--y, 50%), #000, transparent 35%);
-    -webkit-mask-image: radial-gradient(circle at var(--x, 50%) var(--y, 50%), #000, transparent 35%);
+    mask-image: radial-gradient(circle at var(--x, 50%) var(--y, 50%), #000, transparent 40%);
+    -webkit-mask-image: radial-gradient(circle at var(--x, 50%) var(--y, 50%), #000, transparent 40%);
   }
 
   /* .circle-mask{
@@ -34,7 +34,7 @@
   } */
 
   .hero-display-background{
-    background: linear-gradient(transparent 90%, rgba(255,255,255,0.2) 90%), repeating-linear-gradient(90deg, transparent, transparent 1px, rgba(255,255,255,0.2) 1px, rgba(255,255,255,0.2) 2px);
+    background: linear-gradient(transparent , rgba(255,255,255,0.2) 90%), repeating-linear-gradient(90deg, transparent, transparent 1px, rgba(255,255,255,0.2) 1px, rgba(255,255,255,0.2) 2px);
   }
 
   .font-king{ font-family: 'Loved By The King', cursive; }
