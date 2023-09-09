@@ -46,9 +46,20 @@ const useRandom = (values: Array<any>) => {
 
 const INTRO = () => {
   const [word, changeWord] : any = useRandom(["Problem Solver", "Software Developer", "Digital Artist", "Software Geek", "Creative Thinker", "Tech Enthusiast", "Software Craftsman"])
+  // const [img, changeImg] : any = useRandom(['/Screens_2.jpeg']) 
   
   useEffect(()=>{
-    const wordChangeInterval = setInterval(changeWord, 2000)
+    var lastIndex = 0;
+    const wordChangeInterval = setInterval(changeWord, 3000)
+    const imgChanegInterval = setInterval(()=>{
+      const images = ['/Screens_2.jpeg', '/Creative_Screens.jpeg','/Screens_BG.jpeg']
+      const screen:any = document.getElementById("HERO-DISPLAY")
+      let randomIndex = Math.floor(Math.random() * images.length);
+      while (randomIndex==lastIndex) randomIndex = Math.floor(Math.random() * images.length);
+      lastIndex = randomIndex
+      screen.style['background-image'] = `url('${images[randomIndex]}')`
+    }, 3000)
+
     moveAnims()
     const radialMask:any = document.querySelector('.radial-mask');
     const maskIMG:any = document.getElementById('MASK-IMAGE');
@@ -69,39 +80,34 @@ const INTRO = () => {
     return ()=> {
       document.removeEventListener('mousemove', masklistener)
       clearInterval(wordChangeInterval)
+      clearInterval(imgChanegInterval)
     }
   },[])
 
-  return <div id="INTRO" onPointerMove={moveAnims} className={`relative items-center justify-center flex w-full h-screen bg-black bg-fit isolate`}>
+  return <div id="INTRO" onPointerMove={moveAnims} className={`font-DM relative items-center justify-center flex w-full h-screen bg-black bg-fit isolate`}>
     
         {/* <Image src="/Screens_2.jpeg" height={720} width={1080} alt="Screens" className='absolute h-screen w-screen' /> */}
 
-        <div id="HERO-SCREEN" className='absolute extrabright text-white h-[98%] w-[98%] rounded-b-xl -mt-5 radial-mask'>
-          <p id="HERO-DISPLAY" className="text-[12px] h-full bg-clip-text text-transparent bg-[url('/Screens_2.jpeg')] bg-fit bg-cover  leading-tight hero-display-background w-full overflow-x-clip font-mono pt-20 whitespace-normal"></p>
+        <div id="HERO-SCREEN" className='absolute displayAnim extrabright text-white h-[98%] w-[98%] rounded-b-xl -mt-5 radial-mask'>
+          <p id="HERO-DISPLAY" className={`text-[12px] h-full bg-clip-text text-transparent bg-[url('/Screens_2.jpeg')] bg-fit bg-cover  leading-tight hero-display-background w-full overflow-x-clip font-mono pt-20 whitespace-normal`}></p>
         </div>
-        
-        {/* <div id="MASK-IMAGE" className='absolute h-full w-full radial-mask m-10'>
-          <div className="m-5 rounded-md h-[95%] w-[97%] opacity-60">
-          </div>
-        </div> */}
 
-        <div className='h-full w-full z-10 isolate'>
-          <div className='bg-gradient-to-r from-black via-black h-full w-3/5'></div>
+        <div className='h-full w-full opacity-80 z-10 isolate'>
+          <div className='bg-gradient-to-r from-black via-transparent to-black h-full w-full'></div>
           <div className='absolute bottom-0 bg-gradient-to-t from-black h-20 w-full'></div>
         </div>
 
-        <div className='absolute my-10 pt-10 z-10 h-3/5 w-4/5 m-auto font-oswald text-white'>
-          <div className='flex h-fit items-baseline gap-5 text-6xl'><div className='first-letter:text-7xl'>Hi 🙃,</div> I am <div className='first-letter:text-7xl'>Kushagra</div></div>
-          <div className='flex my-6 h-fit items-baseline gap-5 text-7xl'>
-            a
-            {word?.split(' ').map((pt:string , index:number)=>{
-              return <div key={index} className='first-letter:text-8xl'>{pt}</div>
-            })}
+        <div className='absolute z-20 w-full h-full flex items-center justify-center font-oswald shadow-inner text-[#EEEEEE] isolate'>
+          <div className='w-3/5 h-3/5 flex flex-col items-center justify-center'>
+            <div className='flex h-fit items-baseline gap-5 text-7xl'><div className='first-letter:text-8xl'>Hi 🙃,</div> I am <div className='first-letter:text-8xl'>Kushagra</div></div>
+            <div className='flex my-6 h-fit items-baseline gap-5 text-8xl'>
+              a
+              {word?.split(' ').map((pt:string , index:number)=>{
+                return <div key={index} className='first-letter:text-9xl'>{pt}</div>
+              })}
+            </div>
+            <div className='flex h-fit items-baseline gap-5 text-8xl'><div className='first-letter:text-7xl'>Building</div> crazy <div className='first-letter:text-7xl'>Stuff</div></div>
           </div>
-          <div className='flex h-fit items-baseline gap-5 text-6xl'><div className='first-letter:text-7xl'>Building</div> crazy <div className='first-letter:text-7xl'>Stuff</div></div>
-
-          
-          {/* <div className='bg-white text-black text-lg font-DM w-fit py-1.5 px-3.5 m-4 mt-12 rounded-full'>Explore My Story</div> */}
         </div>
         
       </div>
