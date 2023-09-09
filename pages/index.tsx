@@ -17,11 +17,10 @@ const randStr = (size : number = 1000) => {
 const moveAnims = ()=> {
   const display:any = document.getElementById("HERO-DISPLAY")
   let resstring = ""
-  for (let i = 0; i < Math.round(window.innerHeight/20); i++) {
+  for (let i = 0; i < Math.round(window.innerHeight/15); i++) {
     resstring += randStr(window.innerWidth/9 + 50)+"<br/>"
   }
-  display.innerHTML = resstring
-
+  if (display) display.innerHTML = resstring
 }
 
 const useRandom = (values: Array<any>) => {
@@ -46,10 +45,10 @@ const useRandom = (values: Array<any>) => {
 };
 
 const INTRO = () => {
-  const [word, changeWord] : any = useRandom(["Problem Solver", "Software Dev", "Digital Artist", "Software Geek", "Creative Thinker", "Tech Enthusiast"])
+  const [word, changeWord] : any = useRandom(["Problem Solver", "Software Developer", "Digital Artist", "Software Geek", "Creative Thinker", "Tech Enthusiast", "Software Craftsman"])
   
   useEffect(()=>{
-    const wordChangeInterval = setInterval(changeWord, 4000)
+    const wordChangeInterval = setInterval(changeWord, 2000)
     moveAnims()
     const radialMask:any = document.querySelector('.radial-mask');
     const maskIMG:any = document.getElementById('MASK-IMAGE');
@@ -60,8 +59,8 @@ const INTRO = () => {
       const y = (e.clientY / window.innerHeight) * 100;
       
       // Set the CSS variables with the cursor position
-      radialMask.style.setProperty('--x', `${x}%`);
-      radialMask.style.setProperty('--y', `${y}%`);
+      radialMask?.style.setProperty('--x', `${x}%`);
+      radialMask?.style.setProperty('--y', `${y}%`);
       // maskIMG.style.setProperty('--x', `${x}%`);
       // maskIMG.style.setProperty('--y', `${y}%`);
     }
@@ -77,11 +76,8 @@ const INTRO = () => {
     
         {/* <Image src="/Screens_2.jpeg" height={720} width={1080} alt="Screens" className='absolute h-screen w-screen' /> */}
 
-
-        <div id="HERO-SCREEN" className='absolute text-white h-screen w-screen radial-mask'>
-          <p id="HERO-DISPLAY" className="text-sm h-full bg-clip-text text-transparent bg-[url('/Screens_2.jpeg')] bg-fit bg-cover  leading-tight hero-display-background w-full overflow-x-clip font-mono pt-20 whitespace-normal">
-            
-          </p>
+        <div id="HERO-SCREEN" className='absolute extrabright text-white h-[98%] w-[98%] rounded-b-xl -mt-5 radial-mask'>
+          <p id="HERO-DISPLAY" className="text-[12px] h-full bg-clip-text text-transparent bg-[url('/Screens_2.jpeg')] bg-fit bg-cover  leading-tight hero-display-background w-full overflow-x-clip font-mono pt-20 whitespace-normal"></p>
         </div>
         
         {/* <div id="MASK-IMAGE" className='absolute h-full w-full radial-mask m-10'>
@@ -89,13 +85,25 @@ const INTRO = () => {
           </div>
         </div> */}
 
-        <div className='text-white w-8/12 z-10 mx-auto font-DM font-semibold  text-5xl'>
-          <div>Hi 🙃, I am Kushagra,</div>
-          <div className='text-8xl my-5'>{word}</div>
-          <div className='mb-4 '>& a Versatile Software Craftsman ,</div> 
-          <div>Empowering Solutions</div>
+        <div className='h-full w-full z-10 isolate'>
+          <div className='bg-gradient-to-r from-black via-black h-full w-3/5'></div>
+          <div className='absolute bottom-0 bg-gradient-to-t from-black h-20 w-full'></div>
         </div>
 
+        <div className='absolute my-10 pt-10 z-10 h-3/5 w-4/5 m-auto font-oswald text-white'>
+          <div className='flex h-fit items-baseline gap-5 text-6xl'><div className='first-letter:text-7xl'>Hi 🙃,</div> I am <div className='first-letter:text-7xl'>Kushagra</div></div>
+          <div className='flex my-6 h-fit items-baseline gap-5 text-7xl'>
+            a
+            {word?.split(' ').map((pt:string , index:number)=>{
+              return <div key={index} className='first-letter:text-8xl'>{pt}</div>
+            })}
+          </div>
+          <div className='flex h-fit items-baseline gap-5 text-6xl'><div className='first-letter:text-7xl'>Building</div> crazy <div className='first-letter:text-7xl'>Stuff</div></div>
+
+          
+          {/* <div className='bg-white text-black text-lg font-DM w-fit py-1.5 px-3.5 m-4 mt-12 rounded-full'>Explore My Story</div> */}
+        </div>
+        
       </div>
 }
 
@@ -106,7 +114,7 @@ export default function Home() {
     const PageNo = scrollPos / window.innerHeight
     
     if (PageNo < 1) {
-      document.getElementById("INTRO")?.style.setProperty("opacity", `${Math.max(0, 1- 1.5*PageNo)}`)
+      document.getElementById("INTRO")?.style.setProperty("opacity", `${Math.max(0, 1-2*PageNo)}`)
       moveAnims()
     }
     if (PageNo >= 0.8 && PageNo < 2) document.getElementById("NAVBAR")?.style.setProperty("background-color", `black`)
@@ -114,7 +122,7 @@ export default function Home() {
   }
 
   return(
-    <div onScroll={scrollAnims} id="HomePage" className={`isolate scroll-smooth absolute h-[100vh] bg-black overflow-y-scroll overflow-x-hidden select-none w-full`}>
+    <div onScroll={scrollAnims} id="HomePage" className={`isolate global-pointer scroll-smooth absolute h-[100vh] bg-black overflow-y-scroll overflow-x-hidden select-none w-full`}>
       <title>Kushagra Agarwal</title>
       <Navbar title='Theory' className="bg-transparent invert"/>
       <div className='fixed h-32 bg-gradient-to-b from-black via-black '></div>
@@ -132,14 +140,14 @@ export default function Home() {
         <div className='flex cursor-pointer justify-end items-center h-16 w-32 bg-gradient-to-br from-yellow-500 to-yellow-500 rounded-r-lg -translate-x-10 hover:translate-x-0 transition-all ease-in-out duration-100'><div className="cursor-pointer flex items-center justify-end m-5 font-DM">Contact</div></div>
       </div> */}
 
-      <div id="ABOUT" className='relative min-h-screen h-full w-full bg-gradient-to-br from-cyan-500 via-violet-500 to-violet-500 flex items-center justify-center'>
+      {/* <div id="ABOUT" className='relative min-h-screen h-full w-full bg-gradient-to-br from-cyan-500 via-violet-500 to-violet-500 flex items-center justify-center'>
         <div className='relative h-4/5 w-4/5 bg-black rounded-md bg-opacity-70 backdrop-blur-sm slide-expand'>
           <div className='font-bebas text-6xl mx-20 my-10 mt-20 text-white'>ABOUT ME</div>
           <div className='text-2xl font-s leading-10 px-32 py-auto font-DM text-white p-10 h-full w-full'>
           As a "Human" Software Developer, I'm not just fluent in code; I'm also fluent in creativity. When software problems throw a curveball, I swing back with innovative solutions that hit it out of the park. My mind is a toolbox of unconventional ideas, and I'm not afraid to use them to untangle the trickiest of code knots. Challenges are like puzzles, and I thrive on solving them with a dash of ingenuity.
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div id="SKLLS" className='min-h-screen bg-black'>
         <div className='m-20 mb-10 font-bebas text-white text-6xl'>SKILLS & TECHS</div>

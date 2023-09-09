@@ -3,7 +3,27 @@ import { useEffect, useState } from "react";
 import Axios from "../../Utils/Axios";
 import { useRouter } from "next/router";
 
-export default function BlogPage(props:any){
+export default function BlogPage(){
+
+    const [blogs, setBlogs] = useState([])
+    const [loading, setLoading] = useState(true)
+
+    useEffect(()=>{
+      Axios
+      .get('/blog/blogs').then(response=>response.data)
+      .then(blogs=>{
+        blogs.sort((a:any,b:any)=>a.createdAt>b.createdAt?-1:1)
+        return blogs
+      }).then((blogs:any)=>{
+        setBlogs(blogs)
+        setLoading(false)
+      })
+      .catch(err=>{
+        setLoading(false)
+        console.log(err)
+        return []
+      })
+    },[])
 
     const router = useRouter()
     
@@ -15,17 +35,10 @@ export default function BlogPage(props:any){
       )
     }
 
-    const [blogs, setBlogs] = useState(props.blogs)
 
     useEffect(()=>{
       console.log("Blogs : ", blogs, JSON.stringify(blogs), JSON.stringify(blogs)==='[]')
     },[blogs])
-
-    // useEffect(()=>{
-    //   const res = Axios.get('/blog/blogs').then(response=>setBlogs(response.data)).catch(err=>console.log("ERROR :",err.response.data.message))
-    //   console.log("RES:",res)
-    //   // setBlogs(res?.data)
-    // },[])
 
     return(
         <div className="relative flex font-DM justify-center">
@@ -38,8 +51,10 @@ export default function BlogPage(props:any){
           </div>
           {/* <div className="md:w-3/4 w-full bg-[#1d2e23] p-6 text-white min-h-screen font-mono"> */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-6 right-0 overflow-y-scroll h-screen pt-[6.5rem] absolute w-full sm:w-4/5 bg-black p-6 text-white">
-              {
-                (blogs && JSON.stringify(blogs) != "[]") ? blogs.map((blog:any, index:number)=>{
+              { 
+                loading ? <div className="absolute text-center px-3 pt-16 bg-black h-full w-full flex flex-col gap-5 items-center justify-center">
+                <div className="font-DM textwhite text-5xl ">Loading ... </div>
+              </div> : (blogs && JSON.stringify(blogs) != "[]") ? blogs.map((blog:any, index:number)=>{
                   return <a key={index} href={"/blog/"+blog.blogID} className="w-full h-80 sm:h-64 group flex flex-col gap-3 cursor-pointer text-2xl rounded-lg bg-[#181818] sm:bg-[#111111] p-2">
                     <div className="bg-[#181818]">
                       <div className="rounded-md bg-[#2a2a2a] h-24 flex flex-col justify-evenly px-5 py-3">
@@ -70,21 +85,21 @@ export default function BlogPage(props:any){
     )
 }
 
-export async function getStaticProps(){
+// export async function getStaticProps(){
 
-  let blogs = await Axios
-    .get('/blog/blogs').then(response=>response.data)
-    .catch(err=>{
-      console.log()
-      return []
-    })
-  blogs = blogs.sort((a:any,b:any)=>a.createdAt>b.createdAt?-1:1)
+//   let blogs = await Axios
+//     .get('/blog/blogs').then(response=>response.data)
+//     .catch(err=>{
+//       console.log()
+//       return []
+//     })
+//   blogs = blogs.sort((a:any,b:any)=>a.createdAt>b.createdAt?-1:1)
 
-  return {
-    props: {
-      blogs : blogs,
-      fallback : true
-    },
-    revalidate: 300
-  }
-}
+//   return {
+//     props: {
+//       blogs : blogs,
+//       fallback : true
+//     },
+//     revalidate: 300
+//   }
+// }

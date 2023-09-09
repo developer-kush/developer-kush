@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&family=Loved+by+the+King&family=Quicksand:wght@400;600;700&family=Annie+Use+Your+Telescope&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Big+Shoulders+Stencil+Display&family=DM+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&family=Loved+by+the+King&family=Oswald&family=Quicksand:wght@400;600;700&family=Silkscreen&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,12 +6,17 @@
 
 @layer components{
 
+  *{
+    cursor: url('/img/Pointer.svg'), auto;
+  }
+
   ::-webkit-scrollbar{
     width: 0px;
     /* position: absolute;
     width:10px;
     background-color: transparent; */
   }
+
   /* ::-webkit-scrollbar-thumb{
     background-color: #eeeeee;
     border-radius: 10px;
@@ -24,8 +29,8 @@
     width: 100vw;
     height: 100vh;
     background-color: #000; /* Fallback background color */
-    mask-image: radial-gradient(circle at var(--x, 50%) var(--y, 50%), #000, transparent 40%);
-    -webkit-mask-image: radial-gradient(circle at var(--x, 50%) var(--y, 50%), #000, transparent 40%);
+    mask-image: radial-gradient(circle at var(--x, 50%) var(--y, 50%), #000 , transparent 80%, transparent 40%);
+    -webkit-mask-image: radial-gradient(circle at var(--x, 50%) var(--y, 50%), #000, transparent 80%, transparent 40%);
   }
 
   /* .circle-mask{
@@ -37,10 +42,15 @@
     background: linear-gradient(transparent , rgba(255,255,255,0.2) 90%), repeating-linear-gradient(90deg, transparent, transparent 1px, rgba(255,255,255,0.2) 1px, rgba(255,255,255,0.2) 2px);
   }
 
+  .extrabright{
+    filter: brightness(150%)
+  }
+
   .font-king{ font-family: 'Loved By The King', cursive; }
   .font-DM{ font-family: 'DM sans', sans-serif; }
   .font-quicksand{ font-family: 'Quicksand', sans-serif; }
   .font-bebas{ font-family: 'Bebas Neue', cursive; }
+  .font-oswald{ font-family: 'Oswald', sans-serif;}
   /* .font-annie{ font: 'Annie Use Your Telescope', bebas; } */
 
   .heroAnim{
