@@ -92,7 +92,7 @@ const INTRO = () => {
           <p id="HERO-DISPLAY" className={`text-[12px] h-full bg-clip-text text-transparent bg-[url('/Screens_2.jpeg')] bg-fit bg-cover  leading-tight hero-display-background w-full overflow-x-clip font-mono pt-20 whitespace-normal`}></p>
         </div>
 
-        <div className='h-full w-full opacity-80 z-10 isolate'>
+        <div className='h-full w-full opacity-50 z-10 isolate'>
           <div className='bg-gradient-to-r from-black via-transparent to-black h-full w-full'></div>
           <div className='absolute bottom-0 bg-gradient-to-t from-black h-20 w-full'></div>
         </div>
@@ -106,10 +106,9 @@ const INTRO = () => {
                 return <div key={index} className='first-letter:text-9xl'>{pt}</div>
               })}
             </div>
-            <div className='flex h-fit items-baseline gap-5 text-8xl'><div className='first-letter:text-7xl'>Building</div> crazy <div className='first-letter:text-7xl'>Stuff</div></div>
+            <div className='flex h-fit items-baseline gap-5 text-8xl'><div className='first-letter:text-8xl'>Building</div> crazy <div className='first-letter:text-8xl'>Stuff</div></div>
           </div>
         </div>
-        
       </div>
 }
 
