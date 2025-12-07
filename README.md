@@ -1,5 +1,5 @@
 <a href="https://kushagra-agarwal.vercel.app">
-  <img src="./README/header.svg" width="100%" alt="Kushagra Agarwal" />
+  <img src="./svgs/header.svg" width="100%" alt="Kushagra Agarwal" />
 </a>
 
 # 👋 Hey, I'm Kushagra Agarwal
@@ -33,7 +33,7 @@ Outside work, I grind **LeetCode**, compete on **Codeforces (Expert)**, and buil
 ## 🛠️ Tech I Use
 
 <p align="center">
-  <img src="README/techstack.svg" alt="My Tech Stack" />
+  <img src="svgs/techstack.svg" alt="My Tech Stack" />
 </p>
 
 ---
