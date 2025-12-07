@@ -1,9 +1,20 @@
 @import url('https://fonts.googleapis.com/css?family=quicksand:400');
 
+@font-face {
+  font-family: '04b_03';
+  src: url('./fonts/04B_03.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: '04b_03', sans-serif;
+}
+
 .markdown-body {
-    --markdown-radius: 3px;
-    --markdown-font: 'quicksand', serif;
-    --markdown-text: #333;
-    --markdown-title: hotpink;
-    --markdown-line-height: 2;
-  }
+  --markdown-radius: 3px;
+  --markdown-font: 'quicksand', serif;
+  --markdown-text: #333;
+  --markdown-title: hotpink;
+  --markdown-line-height: 2;
+}

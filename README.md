@@ -1,28 +1,45 @@
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bayon&family=Quicksand:wght@300;400;500;600;700&family=Tillana&display=swap" rel="stylesheet">
+<a href="https://kushagra-agarwal.vercel.app">
+  <img src="./README/header.svg" width="100%" alt="Kushagra Agarwal" />
+</a>
 
-<a href = "https://kushagra-agarwal.vercel.app"><img src = "./README/header.svg" width="100%" height="50%" alt = 'Kushagra Agarwal'></a>
+# 👋 Hey, I'm Kushagra Agarwal
 
-# 🧑‍💻 About Me 
+I’m a **Software Engineer & Competitive Programmer** who enjoys building fast, clean, scalable systems.  
+Right now, I work in **Rapido’s Customer Backend Team**, designing **high-scale, low-latency distributed services** that power millions of user interactions.
 
-I am a Competitive programmer and Software Developer from India 💻
+Outside work, I grind **LeetCode**, compete on **Codeforces (Expert)**, and build projects that make developers' lives easier — like **Snippet Flow**, a fast, open-source CLI registry for files & components built in Go.
 
-- 🌱 I’m in my 2nd year of CSE undergrad.
+---
 
-- 🔭 Exploring new technologies, building awesome tools and softwares.
+## 🚀 What I Do
 
-- 🙃 In my free time, I like to :
-    - ⚙️ Develop something for helping myself.
-    - 😈 Experiment with new technologies.
-    - ⚡ And grind LeetCode or CodeForces
+- 🧠 Architect & build **high-scale backend systems**  
+- ⚡ Explore **low-latency design**, distributed caching, and infra  
+- 🔧 Work on **developer tooling** (CLI, TUI, automation, Go ecosystem)  
+- 🏎️ Competitive programming for fun and sharpness  
+- 🧪 Experiment with new languages, frameworks, and tech ideas  
 
-- 🏅 And I love participating in Coding Contests for my routine dose of adrenaline 
+---
 
-# My Tech Stack
+## 🔥 Current Focus
 
-<img src="README/techstack.svg" alt = "My tech Stack">
+- ✨ Designing powerful, intuitive CLI tools (Bubble Tea, Go ecosystem)  
+- 🌀 Building **Snippet Flow** — a dev-first collaborative snippet/component registry  
+- 🏗️ Understanding deeper system internals: schedulers, VMs, compilation  
+- 💡 Improving problem-solving speed for contests  
 
-<!-- # My Competitive Profile
+---
 
-<img src="README/competitive.svg" alt = "Competitive"> -->
+## 🛠️ Tech I Use
+
+<p align="center">
+  <img src="README/techstack.svg" alt="My Tech Stack" />
+</p>
+
+---
+
+## 🏆 A Bit More
+
+- 🥇 **Guardian @ LeetCode**, **Expert @ Codeforces**  
+- 💻 Comfortable with **Go, Python, TypeScript, Rust (early), Kotlin**, and more  
+- 📚 Always learning — always building  
