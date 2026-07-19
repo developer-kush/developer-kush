@@ -1,0 +1,741 @@
+<svg fill="none" viewBox="0 0 850 900" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+	<foreignObject width="100%" height="100%">
+		<div xmlns="http://www.w3.org/1999/xhtml" class="terminal-wrapper">
+			<style>
+				:root {
+					--secret-init: 189s;
+					--secret-duration: 20s;
+				}
+				.terminal-wrapper {
+					padding: 10px;
+					box-sizing: border-box;
+					width: 100%;
+					height: 100%;
+					background: transparent;
+				}
+
+				.terminal-window {
+					position: relative;
+					width: 100%;
+					height: 100%;
+					background: radial-gradient(circle at center, #0a110a 0%, #050805 100%);
+					border: 1.5px solid #284428;
+					border-radius: 12px;
+					box-shadow: 0 12px 40px rgba(4, 8, 4, 0.9), inset 0 0 24px rgba(74, 246, 38, 0.05);
+					overflow: hidden;
+					box-sizing: border-box;
+					display: flex;
+					flex-direction: column;
+				}
+
+				/* Subtle Scanline Screen Simulation */
+				.terminal-window::before {
+					content: " ";
+					display: block;
+					position: absolute;
+					top: 0; left: 0; bottom: 0; right: 0;
+					background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.18) 50%);
+					background-size: 100% 4px;
+					z-index: 10;
+					pointer-events: none;
+				}
+
+				/* CRT Vignette Glow */
+				.terminal-window::after {
+					content: " ";
+					display: block;
+					position: absolute;
+					top: 0; left: 0; bottom: 0; right: 0;
+					background: radial-gradient(circle, rgba(16, 32, 16, 0) 65%, rgba(6, 15, 6, 0.4) 100%);
+					z-index: 11;
+					pointer-events: none;
+				}
+
+				.title-bar {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					height: 38px;
+					background: #0d160d;
+					border-bottom: 1.5px solid #1a2c1a;
+					padding: 0 16px;
+					position: relative;
+					z-index: 2;
+				}
+
+				.window-controls {
+					display: flex;
+					gap: 8px;
+					position: absolute;
+					left: 16px;
+				}
+
+				.control {
+					width: 11px;
+					height: 11px;
+					border-radius: 50%;
+					display: inline-block;
+				}
+
+				.control.close {
+					background-color: #562828;
+				}
+
+				.control.minimize {
+					background-color: #534825;
+				}
+
+				.control.maximize {
+					background-color: #254b25;
+				}
+
+				.title {
+					color: #4a6b4a;
+					font-family: ui-monospace, 'SFMono-Regular', SF Mono, Menlo, Consolas, 'Liberation Mono', monospace;
+					font-size: 13px;
+					font-weight: 500;
+					letter-spacing: 0.5px;
+				}
+
+				.terminal-body {
+					flex: 1;
+					padding: 24px 30px;
+					color: #a4dba4;
+					font-family: ui-monospace, 'SFMono-Regular', SF Mono, Menlo, Consolas, 'Liberation Mono', monospace;
+					font-size: 14px;
+					line-height: 1.6;
+					position: relative;
+					z-index: 2;
+					overflow: hidden;
+					box-sizing: border-box;
+					text-shadow: 0 0 2px rgba(164, 219, 164, 0.35);
+				}
+
+				.prompt-line {
+					margin-bottom: 14px;
+					font-size: 14px;
+				}
+
+				.prompt-user {
+					color: #5dfc5d;
+					font-weight: bold;
+				}
+
+				.prompt-colon {
+					color: #a4dba4;
+				}
+
+				.prompt-dir {
+					color: #5da4fc;
+					font-weight: bold;
+				}
+
+				.prompt-char {
+					color: #a4dba4;
+				}
+
+				.prompt-cmd {
+					color: #dfe1e5;
+					font-weight: 500;
+					display: inline-block;
+					vertical-align: bottom;
+					overflow: hidden;
+					white-space: nowrap;
+					width: 0;
+					border-right: 2px solid #5dfc5d;
+					animation:
+						type-cmd 1.2s steps(17) 0.5s forwards,
+						blink-typing-cursor 0.6s step-end infinite,
+						hide-typing-cursor 0.1s forwards 1.7s;
+				}
+
+				@keyframes type-cmd {
+					from { width: 0; }
+					to { width: 17ch; }
+				}
+
+				@keyframes blink-typing-cursor {
+					0%, 100% { border-right-color: transparent; }
+					50% { border-right-color: #5dfc5d; }
+				}
+
+				@keyframes hide-typing-cursor {
+					to { border-right-color: transparent; border-right-width: 0; }
+				}
+
+				.terminal-content {
+					margin-bottom: 16px;
+				}
+
+				.terminal-content p {
+					margin: 0 0 12px 0;
+					text-align: justify;
+				}
+
+				.greeting {
+					font-size: 16px;
+					font-weight: bold;
+					color: #7bf560;
+					margin-bottom: 14px;
+					opacity: 0;
+					transform: translateY(8px);
+					animation: fade-in-up 0.4s ease forwards 1.8s;
+				}
+
+				.bio-p1 {
+					opacity: 0;
+					transform: translateY(8px);
+					animation: fade-in-up 0.4s ease forwards 2.2s;
+				}
+
+				.bio-p2 {
+					opacity: 0;
+					transform: translateY(8px);
+					animation: fade-in-up 0.4s ease forwards 2.6s;
+				}
+
+				.skills-header {
+					display: flex;
+					align-items: center;
+					gap: 8px;
+					margin-top: 16px;
+					margin-bottom: 8px;
+					opacity: 0;
+					transform: translateY(8px);
+					animation: fade-in-up 0.4s ease forwards 3.0s;
+				}
+
+				.skills-line-separator {
+					flex: 1;
+					border-bottom: 2px dashed #2e4d2e;
+					height: 0;
+				}
+
+				.skills-title {
+					background-color: #7bf560;
+					color: #0a110a;
+					padding: 1px 5px;
+					font-weight: bold;
+					display: inline-block;
+				}
+
+				.skills-tags {
+					margin: 0 0 16px 0;
+					line-height: 1.6;
+					opacity: 0;
+					transform: translateY(8px);
+					animation: fade-in-up 0.4s ease forwards 3.1s;
+				}
+
+				.skill-tag {
+					font-weight: 500;
+				}
+
+				.skill-algo { color: #38bdf8; }
+				.skill-ds { color: #c084fc; }
+				.skill-go { color: #2dd4bf; }
+				.skill-py { color: #facc15; }
+				.skill-sys { color: #fb7185; }
+				.skill-cpp { color: #60a5fa; }
+				.skill-docker { color: #38bdf8; }
+				.skill-kafka { color: #ff8838; }
+
+				.exp-header {
+					display: flex;
+					align-items: center;
+					gap: 8px;
+					margin-top: 16px;
+					margin-bottom: 8px;
+					opacity: 0;
+					transform: translateY(8px);
+					animation: fade-in-up 0.4s ease forwards 3.2s;
+				}
+
+				.exp-line-separator {
+					flex: 1;
+					border-bottom: 2px dashed #2e4d2e;
+					height: 0;
+				}
+
+				.exp-title {
+					background-color: #7bf560;
+					color: #0a110a;
+					padding: 1px 5px;
+					font-weight: bold;
+					display: inline-block;
+				}
+
+				.exp-timeline {
+					color: #8bb88b;
+					font-weight: 500;
+				}
+
+				.exp-content {
+					display: flex;
+					justify-content: space-between;
+					margin: 0 0 16px 0;
+					line-height: 1.6;
+					opacity: 0;
+					transform: translateY(8px);
+					animation: fade-in-up 0.4s ease forwards 3.3s;
+				}
+
+				.terminal-wrapper {
+					position: relative;
+					width: 100%;
+					height: 100%;
+				}
+
+				.terminal-window-a {
+					position: absolute;
+					top: 0; left: 0; right: 0; bottom: 0;
+					transform-origin: center center;
+					animation:
+						flicker-out-a 2.2s var(--secret-init) forwards,
+						flicker-in-a 0.8s calc(var(--secret-init) + var(--secret-duration) + 2.2s) forwards;
+				}
+
+				.terminal-window-b {
+					position: absolute;
+					top: 0; left: 0; right: 0; bottom: 0;
+					background: radial-gradient(circle at center, #0a101d 0%, #05080f 100%) !important;
+					border-color: #1a304d !important;
+					box-shadow: 0 12px 40px rgba(4, 6, 8, 0.9), inset 0 0 24px rgba(56, 189, 248, 0.05) !important;
+					transform-origin: center center;
+					opacity: 0;
+					visibility: hidden;
+					animation:
+						flicker-in-b 0.6s calc(var(--secret-init) + 1.6s) forwards,
+						flicker-out-b 0.8s calc(var(--secret-init) + var(--secret-duration) + 2.2s) forwards;
+				}
+
+				.terminal-window-b .title-bar {
+					background: #0d121c;
+					border-bottom: 1.5px solid #1a273b;
+				}
+
+				.terminal-window-b .title {
+					color: #38bdf8 !important;
+				}
+
+				.terminal-window-b .control {
+					background-color: #2c3847;
+				}
+
+				.terminal-window-b .timer-chip {
+					background-color: #38bdf8;
+					color: #05080f;
+				}
+
+				.secret-body {
+					display: flex;
+					flex-direction: column;
+					align-items: flex-start;
+					justify-content: flex-start;
+					height: 100%;
+					background: transparent;
+					padding: 24px;
+					box-sizing: border-box;
+				}
+
+				.broadcast-container {
+					font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+					font-size: 16px;
+					line-height: 1.8;
+				}
+
+				.broadcast-title {
+					font-weight: bold;
+					background-color: #38bdf8;
+					color: #05080f;
+					padding: 1px 5px;
+					border-right: 2px solid transparent;
+					width: 0;
+					white-space: nowrap;
+					overflow: hidden;
+					margin-bottom: 12px;
+					display: inline-block;
+					animation: type-broadcast-title 1.5s steps(38) calc(var(--secret-init) + 2.5s) forwards;
+				}
+
+				.broadcast-data-1 {
+					font-weight: bold;
+					color: #38bdf8;
+					border-right: 2px solid transparent;
+					width: 0;
+					white-space: pre;
+					overflow: hidden;
+					margin-bottom: 4px;
+					text-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
+					animation: type-broadcast-data-1 1.2s steps(42) calc(var(--secret-init) + 4.2s) forwards;
+				}
+
+				.broadcast-data-2 {
+					font-weight: bold;
+					color: #38bdf8;
+					border-right: 2px solid transparent;
+					width: 0;
+					white-space: pre;
+					overflow: hidden;
+					text-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
+					animation:
+						type-broadcast-data-2 0.8s steps(27) calc(var(--secret-init) + 5.6s) forwards,
+						blink-data-cursor 0.7s step-end infinite calc(var(--secret-init) + 5.6s);
+				}
+
+				@keyframes type-broadcast-title {
+					from { width: 0; border-right-color: #38bdf8; }
+					99% { border-right-color: #38bdf8; }
+					to { width: 38ch; border-right-color: transparent; }
+				}
+
+				@keyframes type-broadcast-data-1 {
+					from { width: 0; border-right-color: #38bdf8; }
+					99% { border-right-color: #38bdf8; }
+					to { width: 42ch; border-right-color: transparent; }
+				}
+
+				@keyframes type-broadcast-data-2 {
+					from { width: 0; border-right-color: #38bdf8; }
+					to { width: 27ch; border-right-color: #38bdf8; }
+				}
+
+				@keyframes blink-data-cursor {
+					from, to { border-right-color: transparent; }
+					50% { border-right-color: #38bdf8; }
+				}
+
+				@keyframes flicker-out-a {
+					0% { opacity: 1; }
+					9.1% { opacity: 0.15; }
+					13.6% { opacity: 0.85; }
+					18.1% { opacity: 0.2; }
+					22.7% { opacity: 1; }
+					45.4% { opacity: 1; }
+					50.0% { opacity: 0.1; }
+					54.5% { opacity: 0.8; }
+					59.0% { opacity: 0.15; }
+					63.6% { opacity: 1; }
+					72.7% { opacity: 1; }
+					81.8% { opacity: 0.1; }
+					90.9% { opacity: 0.65; }
+					100% { opacity: 0; visibility: hidden; }
+				}
+
+				@keyframes flicker-in-a {
+					0% { opacity: 0; visibility: visible; }
+					25% { opacity: 0.8; }
+					50% { opacity: 0.1; }
+					75% { opacity: 0.7; }
+					100% { opacity: 1; visibility: visible; }
+				}
+
+				@keyframes flicker-in-b {
+					0% { opacity: 0.05; visibility: visible; }
+					33.3% { opacity: 0.7; }
+					66.6% { opacity: 0.1; }
+					100% { opacity: 1; visibility: visible; }
+				}
+
+				@keyframes flicker-out-b {
+					0% { opacity: 1; }
+					25% { opacity: 0.1; }
+					50% { opacity: 0.8; }
+					75% { opacity: 0.05; }
+					100% { opacity: 0; visibility: hidden; }
+				}
+
+				.next-prompt {
+					opacity: 0;
+					animation: fade-in 0.3s ease forwards 3.7s;
+				}
+
+				@keyframes fade-in-up {
+					to {
+						opacity: 1;
+						transform: translateY(0);
+					}
+				}
+
+				@keyframes fade-in {
+					to {
+						opacity: 1;
+					}
+				}
+
+				.log-line {
+					color: #8bb88b;
+					font-size: 13px;
+					margin-bottom: 16px;
+					border-left: 3px solid #2e4d2e;
+					padding-left: 10px;
+				}
+
+				.log-tag {
+					color: #e5c07b;
+					font-weight: bold;
+				}
+
+				.log-link {
+					color: #5dfc5d;
+					text-decoration: underline;
+				}
+
+				.cursor {
+					display: inline-block;
+					width: 8px;
+					height: 16px;
+					background-color: #5dfc5d;
+					vertical-align: middle;
+					margin-left: 6px;
+					animation: blink 1s step-end infinite;
+					box-shadow: 0 0 4px #5dfc5d;
+				}
+
+				@keyframes blink {
+					0%, 100% { opacity: 1; }
+					50% { opacity: 0; }
+				}
+
+				/* ASCII Banner Styles */
+				.terminal-banner {
+					margin-bottom: 25px;
+					border-bottom: 1.5px dashed #1d331d;
+					padding-bottom: 20px;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					text-align: center;
+				}
+
+				.banner-ascii {
+					margin: 0;
+					font-family: ui-monospace, 'SFMono-Regular', SF Mono, Menlo, Consolas, 'Liberation Mono', monospace;
+					font-size: 13.5px;
+					line-height: 1.2;
+					white-space: pre;
+				}
+
+				/* Timer Chip Styles */
+				.timer-chip {
+					position: absolute;
+					right: 16px;
+					display: flex;
+					align-items: center;
+					background-color: #9eff39; /* Lime green */
+					color: #0c0f0c; /* Black color */
+					padding: 3px 8px;
+					border-radius: 4px;
+					font-family: ui-monospace, 'SFMono-Regular', SF Mono, Menlo, Consolas, monospace;
+					font-size: 11px;
+					font-weight: 700;
+					letter-spacing: 0.5px;
+					height: 20px;
+					box-sizing: border-box;
+				}
+
+				.timer-label {
+					margin-right: 4px;
+					opacity: 0.85;
+				}
+
+				.clock {
+					display: inline-flex;
+					height: 14px;
+					line-height: 14px;
+					overflow: hidden;
+				}
+
+				.digit-container {
+					display: inline-block;
+					height: 14px;
+					width: 7px;
+					overflow: hidden;
+					position: relative;
+				}
+
+				.digit-list {
+					display: flex;
+					flex-direction: column;
+					position: absolute;
+					top: 0;
+					left: 0;
+				}
+
+				.digit-list span {
+					display: block;
+					height: 14px;
+					line-height: 14px;
+					text-align: center;
+				}
+
+				.colon {
+					margin: 0 1px;
+					line-height: 13px;
+					animation: blink-colon 1s step-end infinite;
+				}
+
+				@keyframes blink-colon {
+					0%, 100% { opacity: 1; }
+					50% { opacity: 0; }
+				}
+
+				/* Clock Animations */
+				.digits-10 {
+					animation: tick-10 10s steps(10) infinite;
+				}
+
+				.digits-6 {
+					animation: tick-6 60s steps(6) infinite;
+				}
+
+				.digits-mins-10 {
+					animation: tick-10 600s steps(10) infinite;
+				}
+
+				.digits-mins-6 {
+					animation: tick-6 3600s steps(6) infinite;
+				}
+
+				@keyframes tick-10 {
+					0% { transform: translateY(0); }
+					100% { transform: translateY(-140px); } /* 10 items * 14px */
+				}
+
+				@keyframes tick-6 {
+					0% { transform: translateY(0); }
+					100% { transform: translateY(-84px); } /* 6 items * 14px */
+				}
+			</style>
+
+			<div class="terminal-wrapper">
+				<div class="terminal-window terminal-window-a">
+					<div class="title-bar">
+						<div class="window-controls">
+							<span class="control close"></span>
+							<span class="control minimize"></span>
+							<span class="control maximize"></span>
+						</div>
+						<div class="title">kushagra@terminal: ~/about_me</div>
+						<div class="timer-chip">
+							<span class="timer-label">UPTIME </span>
+							<span class="clock">
+								<span class="digit-container">
+									<span class="digit-list digits-mins-6">
+										<span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+									</span>
+								</span>
+								<span class="digit-container">
+									<span class="digit-list digits-mins-10">
+										<span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+									</span>
+								</span>
+								<span class="colon">:</span>
+								<span class="digit-container">
+									<span class="digit-list digits-6">
+										<span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+									</span>
+								</span>
+								<span class="digit-container">
+									<span class="digit-list digits-10">
+										<span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+									</span>
+								</span>
+							</span>
+						</div>
+					</div>
+					<div class="terminal-body">
+						<div class="terminal-banner">
+							<pre class="banner-ascii">
+<span style="color: #abff91;"> ██ ▄█▀ █    ██   ██████  ██░ ██  ▄▄▄        ▄████  ██▀███   ▄▄▄      </span>
+<span style="color: #8eff70;"> ██▄█▒  ██  ▓██▒▒██    ▒ ▓██░ ██▒▒████▄     ██▒ ▀█▒▓██ ▒ ██▒▒████▄    </span>
+<span style="color: #71ff51;">▓███▄░ ▓██  ▒██░░ ▓██▄   ▒██▀▀██░▒██  ▀█▄  ▒██░▄▄▄░▓██ ░▄█ ▒▒██  ▀█▄  </span>
+<span style="color: #53fa31;">▓██ █▄ ▓▓█  ░██░  ▒   ██▒░▓█ ░██ ░██▄▄▄▄██ ░▓█  ██▓▒██▀▀█▄  ░██▄▄▄▄██ </span>
+<span style="color: #3ad21a;">▒██▒ █▄▒▒█████▓ ▒██████▒▒░▓█▒░██▓ ▓█   ▓██▒░▒▓███▀▒░██▓ ▒██▒ ▓█   ▓██▒</span>
+<span style="color: #2da814;">▒ ▒▒ ▓▒░▒▓▒ ▒ ▒ ▒ ▒▓▒ ▒ ░ ▒ ░░▒░▒ ▒▒   ▓▒█░ ░▒   ▒ ░ ▒▓ ░▒▓░ ▒▒   ▓▒█░</span>
+<span style="color: #22840f;">░ ░▒ ▒░░░▒░ ░ ░ ░ ░▒  ░ ░ ▒ ░▒░ ░  ▒   ▒▒ ░  ░   ░   ░▒ ░ ▒░  ▒   ▒▒ ░</span>
+<span style="color: #18600a;">░ ░░ ░  ░░░ ░ ░ ░  ░  ░   ░  ░░ ░  ░   ▒   ░ ░   ░   ░░   ░   ░   ▒   </span>
+<span style="color: #0f4006;"> ░  ░      ░           ░   ░  ░  ░      ░  ░      ░    ░           ░  ░</span></pre>
+						</div>
+						<div class="prompt-line">
+							<span class="prompt-user">kushagra@terminal</span><span class="prompt-colon">:</span><span class="prompt-dir">~</span><span class="prompt-char">$</span> <span class="prompt-cmd">cat about_me.txt</span>
+						</div>
+						<div class="terminal-content">
+							<p class="greeting">Hey, I'm Kushagra Agarwal.</p>
+							<p class="bio-p1">Software has always fascinated me. If you really think about it, we've somehow managed to arrange atoms in a way that lets them execute ideas. That's absurd, and I love it. But software itself isn't what excites me. Software is just the implementation. Games, algorithms, operating systems, puzzles—those are all ideas. Software just happens to be one of the most versatile ways we've found to turn those ideas into something real.</p>
+							<p class="bio-p2">That's how I approach everything I build. I spend far more time trying to understand the structure behind a problem than thinking about the code itself. Once the model feels right, the implementation is just translating that understanding into software. I once heard someone say, "If you really understand something, you should be able to explain it to someone with no background at all." I don't know who first said it, but that idea has stuck with me ever since.</p>
+							<div class="skills-header">
+								<span class="skills-title">COMPETENCIES</span>
+								<span class="skills-line-separator"></span>
+							</div>
+							<p class="skills-tags">
+								<span class="skill-tag skill-algo">[Algorithms]</span> 
+								<span class="skill-tag skill-ds">[Data Structures]</span> 
+								<span class="skill-tag skill-go">[Golang]</span> 
+								<span class="skill-tag skill-py">[Python]</span> 
+								<span class="skill-tag skill-sys">[System Design]</span> 
+								<span class="skill-tag skill-cpp">[C++]</span> 
+								<span class="skill-tag skill-docker">[Docker]</span> 
+								<span class="skill-tag skill-kafka">[Kafka]</span>
+							</p>
+							<div class="exp-header">
+								<span class="exp-title">EXPERIENCE</span>
+								<span class="exp-line-separator"></span>
+							</div>
+							<div class="exp-content">
+								<span>Associate Product Engineer @ Rapido</span>
+								<span class="exp-timeline">March 2025 - Present</span>
+							</div>
+						</div>
+						<div class="prompt-line next-prompt">
+							<span class="prompt-user">kushagra@terminal</span><span class="prompt-colon">:</span><span class="prompt-dir">~</span><span class="prompt-char">$</span><span class="cursor"></span>
+						</div>
+					</div>
+				</div>
+				<div class="terminal-window terminal-window-b">
+					<div class="title-bar">
+						<div class="window-controls">
+							<span class="control close"></span>
+							<span class="control minimize"></span>
+							<span class="control maximize"></span>
+						</div>
+						<div class="title">kushagra@terminal: ~/secret</div>
+						<div class="timer-chip">
+							<span class="timer-label">UPTIME </span>
+							<span class="clock">
+								<span class="digit-container">
+									<span class="digit-list digits-mins-6">
+										<span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+									</span>
+								</span>
+								<span class="digit-container">
+									<span class="digit-list digits-mins-10">
+										<span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+									</span>
+								</span>
+								<span class="colon">:</span>
+								<span class="digit-container">
+									<span class="digit-list digits-6">
+										<span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+									</span>
+								</span>
+								<span class="digit-container">
+									<span class="digit-list digits-10">
+										<span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+									</span>
+								</span>
+							</span>
+						</div>
+					</div>
+					<div class="secret-body">
+						<div class="broadcast-container">
+							<div class="broadcast-title">Receiving Unidentified Broadcast ....</div>
+							<div class="broadcast-data-1">0x02 0x05 0x03 0x01    0x09 0x02 0x04 0x05</div>
+							<div class="broadcast-data-2">0x06 0x02 0x01 0x03    0x04</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</foreignObject>
+</svg>
