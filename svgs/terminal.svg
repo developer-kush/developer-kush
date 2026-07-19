@@ -7,7 +7,7 @@
 					--secret-duration: 20s;
 				}
 				.terminal-wrapper {
-					padding: 10px;
+					padding: 10px 10px 0 10px;
 					box-sizing: border-box;
 					width: 100%;
 					height: 100%;
@@ -488,13 +488,58 @@
 					background-color: #5dfc5d;
 					vertical-align: middle;
 					margin-left: 6px;
-					animation: blink 1s step-end infinite;
+					animation: blink 14.4s step-end infinite;
 					box-shadow: 0 0 4px #5dfc5d;
 				}
 
 				@keyframes blink {
-					0%, 100% { opacity: 1; }
-					50% { opacity: 0; }
+					/* C: - . - . */
+					0% { opacity: 1; }
+					4.17% { opacity: 0; }
+					5.56% { opacity: 1; }
+					6.94% { opacity: 0; }
+					8.33% { opacity: 1; }
+					12.50% { opacity: 0; }
+					13.89% { opacity: 1; }
+					15.28% { opacity: 0; }
+
+					/* O: - - - */
+					19.44% { opacity: 1; }
+					23.61% { opacity: 0; }
+					25.00% { opacity: 1; }
+					29.17% { opacity: 0; }
+					30.56% { opacity: 1; }
+					34.72% { opacity: 0; }
+
+					/* N: - . */
+					38.89% { opacity: 1; }
+					43.06% { opacity: 0; }
+					44.44% { opacity: 1; }
+					45.83% { opacity: 0; }
+
+					/* N: - . */
+					50.00% { opacity: 1; }
+					54.17% { opacity: 0; }
+					55.56% { opacity: 1; }
+					56.94% { opacity: 0; }
+
+					/* E: . */
+					61.11% { opacity: 1; }
+					62.50% { opacity: 0; }
+
+					/* C: - . - . */
+					66.67% { opacity: 1; }
+					70.83% { opacity: 0; }
+					72.22% { opacity: 1; }
+					73.61% { opacity: 0; }
+					75.00% { opacity: 1; }
+					79.17% { opacity: 0; }
+					80.56% { opacity: 1; }
+					81.94% { opacity: 0; }
+
+					/* T: - */
+					86.11% { opacity: 1; }
+					90.28% { opacity: 0; }
 				}
 
 				/* ASCII Banner Styles */
@@ -664,6 +709,7 @@
 							<p class="greeting">Hey, I'm Kushagra Agarwal.</p>
 							<p class="bio-p1">Software has always fascinated me. If you really think about it, we've somehow managed to arrange atoms in a way that lets them execute ideas. That's absurd, and I love it. But software itself isn't what excites me. Software is just the implementation. Games, algorithms, operating systems, puzzles—those are all ideas. Software just happens to be one of the most versatile ways we've found to turn those ideas into something real.</p>
 							<p class="bio-p2">That's how I approach everything I build. I spend far more time trying to understand the structure behind a problem than thinking about the code itself. Once the model feels right, the implementation is just translating that understanding into software. I once heard someone say, "If you really understand something, you should be able to explain it to someone with no background at all." I don't know who first said it, but that idea has stuck with me ever since.</p>
+							<p class="bio-p2">Also, Cache Told me you're looking for something, did you find it ?</p>
 							<div class="skills-header">
 								<span class="skills-title">COMPETENCIES</span>
 								<span class="skills-line-separator"></span>

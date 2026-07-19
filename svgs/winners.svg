@@ -1,0 +1,86 @@
+<svg fill="none" viewBox="0 0 850 50" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+	<a href="winners.md">
+		<foreignObject width="100%" height="100%">
+			<div xmlns="http://www.w3.org/1999/xhtml" class="strip-wrapper">
+				<style>
+					.strip-wrapper {
+						width: 100%;
+						height: 100%;
+						box-sizing: border-box;
+						padding: 0 10px 10px 10px;
+					}
+					.strip-window {
+						position: relative;
+						width: 100%;
+						height: 100%;
+						background: radial-gradient(circle at center, #0a110a 0%, #050805 100%);
+						border: 1.5px solid #284428;
+						border-radius: 8px;
+						box-shadow: 0 4px 12px rgba(4, 8, 4, 0.4), inset 0 0 10px rgba(74, 246, 38, 0.03);
+						overflow: hidden;
+						box-sizing: border-box;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						transition: all 0.3s ease;
+						cursor: pointer;
+					}
+					.strip-window::before {
+						content: " ";
+						display: block;
+						position: absolute;
+						top: 0; left: 0; bottom: 0; right: 0;
+						background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%);
+						background-size: 100% 4px;
+						z-index: 10;
+						pointer-events: none;
+					}
+					.strip-window:hover {
+						border-color: #9eff39;
+						box-shadow: 0 6px 20px rgba(158, 255, 57, 0.15), inset 0 0 15px rgba(158, 255, 57, 0.05);
+					}
+					.strip-window:hover .text {
+						color: #9eff39;
+						text-shadow: 0 0 10px rgba(158, 255, 57, 0.8), 0 0 20px rgba(158, 255, 57, 0.4);
+					}
+					.text {
+						font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, monospace;
+						font-size: 13px;
+						font-weight: bold;
+						color: #7bf560;
+						text-shadow: 0 0 6px rgba(123, 245, 96, 0.4);
+						z-index: 5;
+						transition: all 0.3s ease;
+						user-select: none;
+						display: flex;
+						align-items: center;
+						gap: 8px;
+					}
+					.icon {
+						display: inline-block;
+						width: 6px;
+						height: 6px;
+						background-color: #7bf560;
+						border-radius: 50%;
+						box-shadow: 0 0 8px #7bf560;
+						animation: pulse 2s infinite ease-in-out;
+					}
+					.strip-window:hover .icon {
+						background-color: #9eff39;
+						box-shadow: 0 0 12px #9eff39;
+					}
+					@keyframes pulse {
+						0%, 100% { opacity: 0.4; transform: scale(0.9); }
+						50% { opacity: 1; transform: scale(1.1); }
+					}
+				</style>
+				<div class="strip-window">
+					<div class="text">
+						<span class="icon"></span>
+						Nobody has found the secret yet.
+					</div>
+				</div>
+			</div>
+		</foreignObject>
+	</a>
+</svg>

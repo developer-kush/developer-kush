@@ -1,0 +1,9 @@
+
+
+Hey, I'm Kushagra Agarwal.
+
+Software has always fascinated me. If you really think about it, we've somehow managed to arrange atoms in a way that lets them execute ideas. That's absurd, and I love it. But software itself isn't what excites me. Software is just the implementation. Games, algorithms, operating systems, puzzles—those are all ideas. Software just happens to be one of the most versatile ways we've found to turn those ideas into something real.
+
+That's how I approach everything I build. I spend far more time trying to understand the structure behind a problem than thinking about the code itself. Once the model feels right, the implementation is just translating that understanding into software. I once heard someone say, "If you really understand something, you should be able to explain it to someone with no background at all." I don't know who first said it, but that idea has stuck with me ever since.
+
+/blob/8c9d935/secret.md
