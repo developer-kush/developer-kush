@@ -1,2 +1,2 @@
-<div align="center"><a href="#void"><img src="./svgs/terminal.svg?v=38" width="850" alt="Terminal Description" /></a></div>
+<div align="center"><a href="#void"><img src="https://outer-sunday-columnists-martin.trycloudflare.com/terminal.svg" width="850" alt="Terminal Description" /></a></div>
 <div align="center"><a href="winners.md"><img src="./svgs/winners.svg?v=5" width="850" alt="Solvers Status" /></a></div>
