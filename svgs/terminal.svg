@@ -3,8 +3,8 @@
 		<div xmlns="http://www.w3.org/1999/xhtml" class="terminal-wrapper">
 			<style>
 				:root {
-					--secret-init: 189s;
-					--secret-duration: 20s;
+					--secret-init: 15s;
+					--secret-duration: 15s;
 				}
 				.terminal-wrapper {
 					padding: 10px 10px 0 10px;
