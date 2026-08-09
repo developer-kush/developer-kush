@@ -1,12 +1,12 @@
-<img src="./svgs/header.svg" width="100%" />
-<br />
+# Target Test
 
-<a href="https://kushagra-agarwal.vercel.app">
-  <img src="./svgs/header.svg" align="left" width="50%" alt="Kushagra Agarwal" />
-</a>
+[SHOW A](#show-a)  
+[SHOW B](#show-b)
 
-<img src="./svgs/techstack.svg" width="45%" /> 
-<br/>
-<img src="./svgs/techstack.svg" width="45%" />
+<div id="show-a">
+  <img src="./svgs/header.svg" width="300">
+</div>
 
-<br clear="left"/>
+<div id="show-b">
+  <img src="./svgs/terminal.svg" width="300">
+</div>
